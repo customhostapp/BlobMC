@@ -7,6 +7,7 @@
 <style>
 body {
     background-color: #333333; /* Light Gray */
+    text-align: center; /* Center-align the content */
 }
 
 .button {
@@ -22,6 +23,15 @@ body {
     cursor: pointer;
     border-radius: 10px;
 }
+
+.webstore-button {
+    background-color: #ff4500; /* Orange Red */
+}
+
+.copyIP-button {
+    background-color: #FF674C; /* Red */
+}
+
 </style>
 </head>
 <body>
@@ -33,7 +43,7 @@ body {
 <button class="button" onclick="openWebsite()">BlobMC Honlap</button>
 
 <!-- Button to open webstore -->
-<button class="button" onclick="openWebsite()">BlobMC Webáruház</button>
+<button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
 
 <script>
 function copyIP() {
@@ -54,7 +64,7 @@ function copyIP() {
     document.body.removeChild(tempTextArea);
   
     // Alert the copied text
-    alert("BlobMC szerver IP másolva: " + serverIp);
+    alert("BlobMC szerver IP másolva, illeszd be akárhoava!");
 }
 
 function openWebsite() {
@@ -62,13 +72,10 @@ function openWebsite() {
 }
 
 function openWebstore() {
-    window.open("https://https://blobmc-bolt.tebex.io", "_blank");
+    window.open("https://blobmc-bolt.tebex.io", "_blank");
 }
 
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
