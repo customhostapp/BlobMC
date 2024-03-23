@@ -6,7 +6,7 @@
 <title>BlobMC Szerver IP Másolása</title>
 <style>
 body {
-    background-color: #f0f0f0; /* Light Gray */
+    background-color: #333333; /* Light Gray */
 }
 
 .button {
@@ -27,10 +27,13 @@ body {
 <body>
 
 <!-- Button to trigger copying -->
-<button class="button" onclick="copyIP()">IP cím másolása</button>
+<button class="button" onclick="copyIP()">Szerver IP cím másolása</button>
 
 <!-- Button to open website -->
 <button class="button" onclick="openWebsite()">BlobMC Honlap</button>
+
+<!-- Button to open webstore -->
+<button class="button" onclick="openWebsite()">BlobMC Webáruház</button>
 
 <script>
 function copyIP() {
@@ -57,6 +60,11 @@ function copyIP() {
 function openWebsite() {
     window.open("https://www.blobmc.hu", "_blank");
 }
+
+function openWebstore() {
+    window.open("https://https://blobmc-bolt.tebex.io", "_blank");
+}
+
 </script>
 
 </body>
