@@ -10,7 +10,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; /* Align items vertically */
     height: 100vh; /* Ensure the body takes up the full height of the viewport */
+}
+
+.image-container {
+    margin-bottom: 20px; /* Add space between the image and buttons */
 }
 
 .button {
@@ -42,6 +47,14 @@ body {
 </style>
 </head>
 <body>
+
+<!-- Image container -->
+<div class="image-container">
+    <!-- Image link to open in browser -->
+    <a href="your-image-url.jpg" target="_blank">
+        <img src="your-image-url.jpg" alt="Your Image Description" width="200" height="200">
+    </a>
+</div>
 
 <!-- Button to trigger copying -->
 <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
@@ -81,11 +94,7 @@ function openWebsite() {
 function openWebstore() {
     window.open("https://blobmc-bolt.tebex.io", "_blank");
 }
-
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
