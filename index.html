@@ -12,7 +12,14 @@ body {
     align-items: center;
     flex-direction: column; /* Align items vertically */
     height: 100vh; /* Ensure the body takes up the full height of the viewport */
-    margin: 0 auto; /* Center content horizontally */
+    margin: 0; /* Remove default margin */
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; /* Add space between the image and buttons */
 }
 
 .image-container {
@@ -53,25 +60,27 @@ body {
 </head>
 <body>
 
-<!-- Image container -->
-<div class="image-container">
-    <!-- Image link to open in browser -->
-    <a href="https://cdn.discordapp.com/attachments/921768831075102740/1210870417430941757/blobmc1.jpg?ex=66110bf4&is=65fe96f4&hm=c8eb0d3964d8c239f547d7bd22e4047ee7165ca58e5399297001cbc2973cafcc&" target="_blank">
-        <img src="https://cdn.discordapp.com/attachments/921768831075102740/1210870417430941757/blobmc1.jpg?ex=66110bf4&is=65fe96f4&hm=c8eb0d3964d8c239f547d7bd22e4047ee7165ca58e5399297001cbc2973cafcc&" alt="BlobMC Image" style="width: 50%; height: auto;">
-    </a>
+<div class="content">
+    <!-- Image container -->
+    <div class="image-container">
+        <!-- Image link to open in browser -->
+        <a href="https://cdn.discordapp.com/attachments/921768831075102740/1210870417430941757/blobmc1.jpg?ex=66110bf4&is=65fe96f4&hm=c8eb0d3964d8c239f547d7bd22e4047ee7165ca58e5399297001cbc2973cafcc&" target="_blank">
+            <img src="https://cdn.discordapp.com/attachments/921768831075102740/1210870417430941757/blobmc1.jpg?ex=66110bf4&is=65fe96f4&hm=c8eb0d3964d8c239f547d7bd22e4047ee7165ca58e5399297001cbc2973cafcc&" alt="BlobMC Image" style="width: 50%; height: auto;">
+        </a>
+    </div>
+
+    <!-- Button to trigger copying -->
+    <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
+
+    <!-- Button to open website -->
+    <button class="button webpage-button" onclick="openWebsite()">BlobMC Honlap</button>
+
+    <!-- Button to open webstore -->
+    <button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
+
+    <!-- Button to open GitHub page -->
+    <button class="button github-button" onclick="openGitHub()">Közösség</button>
 </div>
-
-<!-- Button to trigger copying -->
-<button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
-
-<!-- Button to open website -->
-<button class="button webpage-button" onclick="openWebsite()">BlobMC Honlap</button>
-
-<!-- Button to open webstore -->
-<button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
-
-<!-- Button to open GitHub page -->
-<button class="button github-button" onclick="openGitHub()">Közösség</button>
 
 <script>
 function copyIP() {
