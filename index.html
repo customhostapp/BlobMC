@@ -6,7 +6,7 @@
 <title>BlobMC Szerver IP Másolása</title>
 <style>
 body {
-    background-color: #333333; /* Gray */
+    background-color: #333333; /* Light Gray */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +14,6 @@ body {
 }
 
 .button {
-    background-color: #CC3116; /* Red */
     border: none;
     color: white;
     padding: 15px 32px;
@@ -49,6 +48,10 @@ body {
     transform: translateY(-50%); /* Adjust for vertical centering */
 }
 
+.copy-button {
+    background-color: #CC3116; /* Red */
+}
+
 .webstore-button {
     background-color: #E4B260; /* Orange */
 }
@@ -62,7 +65,7 @@ body {
 <body>
 
 <!-- Button to trigger copying -->
-<button class="button" onclick="copyIP()">Szerver IP cím másolása</button>
+<button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
 <!-- Left arrow pointing at the button -->
 <div class="arrow arrow-left"></div>
 <!-- Right arrow pointing at the button -->
@@ -105,6 +108,9 @@ function openWebstore() {
 }
 
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
