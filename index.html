@@ -48,6 +48,10 @@ body {
     background-color: #87CEFA; /* Blue */
 }
 
+.dc-button {
+    background-color: #411EA6; /* Dark */
+}
+
 .github-button {
     background-color: #C380D0; /* Purple */
 }
@@ -68,6 +72,10 @@ body {
 
     <!-- Button to open GitHub page -->
     <button class="button github-button" onclick="openGitHub()">Közösség</button>
+
+    <!-- Button to open dc page -->
+    <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
+
 </div>
 
 <script>
@@ -103,6 +111,10 @@ function openWebstore() {
 function openGitHub() {
     window.location.href = "https://veghlacuska.github.io/BlobMCMedia/";
 }
+
+function openDC() {
+    window.open("https://discord.gg/u6W8VRSNjq", "_blank");
+
 </script>
 
 </body>
