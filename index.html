@@ -7,13 +7,10 @@
 <style>
 body {
     background-color: #333333; /* Dark Gray */
-    background-image: url('https://cdn.discordapp.com/attachments/1208705442759319582/1221337332767133696/Wallpaper3.png?ex=66123607&is=65ffc107&hm=091e713d4721b453fdb622044e0d7dcd15fb92abecaad815e5500651dbf29929&');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; /* Align items vertically */
     height: 100vh; /* Ensure the body takes up the full height of the viewport */
     margin: 0; /* Remove default margin */
 }
@@ -22,7 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px; /* Add space between the content and buttons */
+    position: relative;
 }
 
 .button {
@@ -69,22 +66,23 @@ body {
 }
 
 /* Style for the black circle */
-.black-circle {
-    width: 100px;
-    height: 100px;
+.circle {
     background-color: black;
     border-radius: 50%;
+    width: 200px; /* Adjust the size of the circle */
+    height: 200px; /* Adjust the size of the circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    bottom: 50px;
+    bottom: 20px; /* Adjust the position from the bottom */
 }
 
-/* Style for the GIF */
+/* Style for the GIFs */
 .gif {
-    width: 80px;
-    height: 80px;
-    position: absolute;
-    bottom: 70px;
+    width: 80%; /* Adjust the width of the GIF */
 }
+
 </style>
 </head>
 <body>
@@ -107,15 +105,27 @@ body {
 
     <!-- Button to open dc page -->
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
+
+    <!-- Black circle with GIF inside -->
+    <div class="circle" style="bottom: 100px;">
+        <img src="https://cdn.discordapp.com/attachments/1208705442759319582/1221348406220296233/file-2.gif?ex=66124057&is=65ffcb57&hm=7f426c2ca03e917b36e0c14604f96861cbf7aeeeac67aa7ca397a8073ebd823d&" alt="GIF" class="gif">
+    </div>
+
+    <!-- Additional GIFs -->
+    <div class="circle" style="bottom: 250px;">
+        <img src="https://blobmc.hu/wp-content/uploads/2024/03/stitch-6.gif" alt="GIF" class="gif">
+    </div>
+
+    <div class="circle" style="bottom: 400px;">
+        <img src="https://blobmc.hu/wp-content/uploads/2024/03/file-1-2.gif" alt="GIF" class="gif">
+    </div>
 </div>
 
-<!-- Black circle for GIF -->
-<div class="black-circle"></div>
-
-<!-- GIF -->
-<img class="gif" src="https://cdn.discordapp.com/attachments/1208705442759319582/1221348406220296233/file-2.gif?ex=66124057&is=65ffcb57&hm=7f426c2ca03e917b36e0c14604f96861cbf7aeeeac67aa7ca397a8073ebd823d" alt="GIF">
-
 <script>
+function openRangok() {
+    window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
+}
+
 function copyIP() {
     var serverIp = "195.228.230.105:25574";
   
@@ -141,4 +151,19 @@ function openWebsite() {
     window.open("https://www.blobmc.hu", "_blank");
 }
 
-function openWebstore()
+function openWebstore() {
+    window.open("https://blobmc-bolt.tebex.io", "_blank");
+}
+
+function openGitHub() {
+    window.location.href = "https://veghlacuska.github.io/BlobMCMedia/";
+}
+
+function openDC() {
+    window.open("https://discord.gg/u6W8VRSNjq", "_blank");
+}
+
+</script>
+
+</body>
+</html>
