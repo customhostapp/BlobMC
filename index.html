@@ -32,6 +32,7 @@ body {
     margin: 10px 0; /* Add margin between buttons */
     cursor: pointer;
     border-radius: 10px;
+    background-color: #90EE90; /* Light Green */
 }
 .copy-button {
     background-color: #CC3116; /* Red */
@@ -49,14 +50,28 @@ body {
 .github-button {
     background-color: #C380D0; /* Purple */
 }
-.light-green-button {
-    background-color: #90EE90; /* Light Green */
-}
 
-/* Styles for the like button and message */
 .like-button {
+    border: none;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50%; /* Make it a circle */
     background-color: white; /* White heart */
     color: black; /* Black text */
+}
+
+.like-button.red {
+    background-color: #CC3116; /* Red heart */
+    color: white; /* White text */
+}
+
+.like-message {
+    color: white;
+    margin-top: 10px; /* Add space between button and message */
 }
 
 </style>
@@ -82,41 +97,33 @@ body {
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
 
     <!-- Like button and message -->
-    <div id="likeSection">
-        <button class="button like-button" onclick="like()">&lt;3</button>
-        <p id="likeMessage"></p>
-    </div>
+    <button class="like-button" onclick="like()">&lt;3</button>
+    <p class="like-message" id="likeMessage"></p>
 </div>
 
 <script>
-// Function to handle the like button click
 function like() {
-    // Check if the user has already liked
     var lastLikeTime = localStorage.getItem('lastLikeTime');
     if (lastLikeTime) {
-        // Calculate the time difference
         var currentTime = new Date().getTime();
         var elapsedTime = currentTime - parseInt(lastLikeTime);
         var remainingTime = 43200000 - elapsedTime; // 12 hours in milliseconds
         
         if (remainingTime > 0) {
-            // Display the remaining time
             displayMessage("You already liked. Please wait: " + formatTime(remainingTime));
             return;
         }
     }
     
-    // Perform the like action
     localStorage.setItem('lastLikeTime', new Date().getTime());
     displayMessage("Thanks for liking!");
+    document.querySelector('.like-button').classList.add('red');
 }
 
-// Function to display a message below the like button
 function displayMessage(message) {
     document.getElementById('likeMessage').textContent = message;
 }
 
-// Function to format time in HH:MM:SS format
 function formatTime(milliseconds) {
     var seconds = Math.floor(milliseconds / 1000);
     var minutes = Math.floor(seconds / 60);
