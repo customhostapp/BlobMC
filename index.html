@@ -119,6 +119,19 @@ function drop() {
         localStorage.setItem("drop_count", currentCount);
         // Save the last drop time
         localStorage.setItem("lastDropTime", new Date().getTime().toString());
+
+        // Check if current count is a multiple of 5
+        if (currentCount % 5 === 0) {
+            var dropButton = document.querySelector('.drop-button');
+            dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
+            dropButton.textContent = "<->"; // Change title to <->
+        }
+        
+        if (currentCount % 5 === 1) {
+            var dropButton = document.querySelector('.drop-button');
+            dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
+            dropButton.textContent = "(=)"; // Change title back to (=)
+        }
     } else {
         alert("Holnap újra Drop-olhatsz 7:40-kor!.");
     }
