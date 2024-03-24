@@ -11,23 +11,16 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column; /* Align items vertically */
-    height: 100%;
-    margin: 0;
-    overflow: auto; /* Enable overflow scrolling */
+    height: 100vh; /* Ensure the body takes up the full height of the viewport */
+    margin: 0; /* Remove default margin */
 }
 
 .container {
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+    padding-top: 50px; /* Add space above the buttons */
+    padding-bottom: 50px; /* Add space below the gifs */
 }
 
 .button {
@@ -68,23 +61,15 @@ body {
     background-color: #90EE90; /* Light Green */
 }
 
-/* Style for the black circle */
-.circle {
-    background-color: black;
-    border-radius: 50%;
-    width: 200px; /* Adjust the size of the circle */
-    height: 200px; /* Adjust the size of the circle */
+.gif-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    position: relative;
-    margin-bottom: 20px; /* Add space between GIFs */
 }
 
-/* Style for the GIFs */
 .gif {
-    width: 80%; /* Adjust the width of the GIF */
-    border-radius: 50%; /* Make the GIF circular */
+    width: 200px; /* Adjust width of gifs */
+    margin: 10px; /* Add margin between gifs */
 }
 
 </style>
@@ -92,45 +77,33 @@ body {
 <body>
 
 <div class="container">
-    <div class="button-container">
-        <!-- Button to trigger copying -->
-        <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
+    <!-- Button to trigger copying -->
+    <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
 
-        <!-- Button to open webpage -->
-        <button class="button webpage-button" onclick="openWebsite()">BlobMC Honlap</button>
+    <!-- Button to open webpage -->
+    <button class="button webpage-button" onclick="openWebsite()">BlobMC Honlap</button>
 
-        <!-- Button to open webstore -->
-        <button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
+    <!-- Button to open webstore -->
+    <button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
 
-        <!-- Button to open rangok -->
-        <button class="button light-green-button" onclick="openRangok()">Rangok</button>
+    <!-- Button to open rangok -->
+    <button class="button light-green-button" onclick="openRangok()">Rangok</button>
 
-        <!-- Button to open GitHub page -->
-        <button class="button github-button" onclick="openGitHub()">Közösség</button>
+    <!-- Button to open GitHub page -->
+    <button class="button github-button" onclick="openGitHub()">Közösség</button>
 
-        <!-- Button to open dc page -->
-        <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
-    </div>
+    <!-- Button to open dc page -->
+    <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
 
-    <div class="circle">
-        <img src="https://cdn.discordapp.com/attachments/1208705442759319582/1221348406220296233/file-2.gif?ex=66124057&is=65ffcb57&hm=7f426c2ca03e917b36e0c14604f96861cbf7aeeeac67aa7ca397a8073ebd823d&" alt="GIF" class="gif">
-    </div>
-
-    <!-- Additional GIFs -->
-    <div class="circle">
-        <img src="https://blobmc.hu/wp-content/uploads/2024/03/stitch-6.gif" alt="GIF" class="gif">
-    </div>
-
-    <div class="circle">
-        <img src="https://blobmc.hu/wp-content/uploads/2024/03/file-1-2.gif" alt="GIF" class="gif">
+    <div class="gif-container">
+        <!-- Add your gifs here -->
+        <img class="gif" src="https://blobmc.hu/wp-content/uploads/2024/03/file-2.gif" alt="gif">
+        <img class="gif" src="https://blobmc.hu/wp-content/uploads/2024/03/stitch-6.gif" alt="gif">
+        <img class="gif" src="https://blobmc.hu/wp-content/uploads/2024/03/file-1-2.gif" alt="gif">
     </div>
 </div>
 
 <script>
-function openRangok() {
-    window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
-}
-
 function copyIP() {
     var serverIp = "195.228.230.105:25574";
   
@@ -166,6 +139,10 @@ function openGitHub() {
 
 function openDC() {
     window.open("https://discord.gg/u6W8VRSNjq", "_blank");
+}
+
+function openRangok() {
+    window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
 }
 
 </script>
