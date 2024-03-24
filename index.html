@@ -97,7 +97,7 @@ body {
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
 
     <!-- Like button and message -->
-    <button class="like-button" onclick="like()">&lt;3</button>
+    <button class="like-button" onclick="like()" id="likeButton">&lt;3</button>
     <p class="like-message" id="likeMessage"></p>
 </div>
 
@@ -117,7 +117,7 @@ function like() {
     
     localStorage.setItem('lastLikeTime', new Date().getTime());
     displayMessage("Thanks for liking!");
-    document.querySelector('.like-button').classList.add('red');
+    document.getElementById('likeButton').classList.add('red');
 }
 
 function displayMessage(message) {
