@@ -13,12 +13,10 @@ body {
     flex-direction: column; /* Align items vertically */
     height: 100vh; /* Ensure the body takes up the full height of the viewport */
     margin: 0; /* Remove default margin */
+    overflow-y: scroll; /* Enable vertical scrolling */
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     position: relative;
 }
 
@@ -60,11 +58,6 @@ body {
     background-color: #90EE90; /* Light Green */
 }
 
-/* Style for the scaled down button */
-.scaled-down-button {
-    transform: scale(0.85); /* Scale down the button by 85% */
-}
-
 /* Style for the black circle */
 .circle {
     background-color: black;
@@ -76,11 +69,14 @@ body {
     align-items: center;
     position: absolute;
     bottom: 20px; /* Adjust the position from the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for horizontal centering */
 }
 
 /* Style for the GIFs */
 .gif {
     width: 80%; /* Adjust the width of the GIF */
+    border-radius: 50%; /* Make the GIF circular */
 }
 
 </style>
@@ -107,16 +103,16 @@ body {
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
 
     <!-- Black circle with GIF inside -->
-    <div class="circle" style="bottom: 100px;">
+    <div class="circle">
         <img src="https://cdn.discordapp.com/attachments/1208705442759319582/1221348406220296233/file-2.gif?ex=66124057&is=65ffcb57&hm=7f426c2ca03e917b36e0c14604f96861cbf7aeeeac67aa7ca397a8073ebd823d&" alt="GIF" class="gif">
     </div>
 
     <!-- Additional GIFs -->
-    <div class="circle" style="bottom: 250px;">
+    <div class="circle" style="bottom: 300px;">
         <img src="https://blobmc.hu/wp-content/uploads/2024/03/stitch-6.gif" alt="GIF" class="gif">
     </div>
 
-    <div class="circle" style="bottom: 400px;">
+    <div class="circle" style="bottom: 550px;">
         <img src="https://blobmc.hu/wp-content/uploads/2024/03/file-1-2.gif" alt="GIF" class="gif">
     </div>
 </div>
