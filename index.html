@@ -7,6 +7,8 @@
 <style>
 body {
     background-color: #333333; /* Dark Gray */
+    background-image: url('https://cdn.discordapp.com/attachments/1208705442759319582/1221337332767133696/Wallpaper3.png?ex=66123607&is=65ffc107&hm=091e713d4721b453fdb622044e0d7dcd15fb92abecaad815e5500651dbf29929&');
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -151,11 +153,10 @@ function toggleTheme() {
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].classList.toggle('dark-theme-button');
     }
-    document.body.style.backgroundImage = "none";
-    if (document.body.style.backgroundColor === "rgb(51, 51, 51)") {
-        document.body.style.backgroundColor = "#333333"; // Dark Gray
+    if (document.body.style.backgroundColor === "") {
+        document.body.style.backgroundColor = "white"; // White background
     } else {
-        document.body.style.backgroundColor = "#333333"; // Dark Gray
+        document.body.style.backgroundColor = ""; // Remove background color
     }
 }
 </script>
