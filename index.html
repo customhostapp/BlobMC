@@ -6,20 +6,19 @@
 <title>BlobMC Dashboard</title>
 <style>
 body {
-    background-color: #333333; /* Dark gray background */
+    background-color: #333333; /* Dark Gray */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Ensure the body takes up the full height of the viewport */
+    flex-direction: column; /* Align items vertically */
     margin: 0; /* Remove default margin */
-    overflow-y: scroll; /* Allow vertical scrolling */
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 20px; /* Add padding at the top for spacing */
+    margin-bottom: 20px; /* Add space between the content and buttons */
 }
 
 .button {
@@ -34,7 +33,6 @@ body {
     cursor: pointer;
     border-radius: 10px;
     position: relative; /* Make the button position relative */
-    background-color: rgba(0, 0, 0, 0.5); /* Dark background for buttons */
 }
 
 .copy-button {
@@ -66,23 +64,29 @@ body {
     transform: scale(0.85); /* Scale down the button by 85% */
 }
 
-/* Style for the GIF container */
-.gif-container {
-    position: absolute;
-    width: 150px; /* Width of the circle */
-    height: 150px; /* Height of the circle */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Center the circle */
-    background-color: black; /* Black circle background */
-    border-radius: 50%; /* Create a black circle */
-    z-index: -1; /* Place behind other content */
-    background-image: url('your-gif-url.gif'); /* Add the URL of your GIF */
-    background-size: cover; /* Scale the background image to cover the container */
-    background-repeat: no-repeat; /* Prevent the background image from repeating */
-    background-position: center; /* Center the background image */
+/* Style for the dark/white theme changer button */
+.theme-button {
+    background-color: #333333; /* Dark Gray */
+    border: 2px solid white;
 }
 
+/* Style for the black circle */
+.black-circle {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -50px;
+}
+
+/* Style for the GIF */
+.gif {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    bottom: -30px;
+}
 </style>
 </head>
 <body>
@@ -105,15 +109,18 @@ body {
 
     <!-- Button to open dc page -->
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
+
+    <!-- Button to toggle dark/white theme -->
+    <button class="button theme-button" onclick="toggleTheme()">Téma</button>
 </div>
 
-<div class="gif-container"></div> <!-- GIF container -->
+<!-- Black circle for GIF -->
+<div class="black-circle"></div>
+
+<!-- GIF -->
+<img class="gif" src="https://cdn.discordapp.com/attachments/1208705442759319582/1221348406220296233/file-2.gif?ex=66124057&is=65ffcb57&hm=7f426c2ca03e917b36e0c14604f96861cbf7aeeeac67aa7ca397a8073ebd823d" alt="GIF">
 
 <script>
-function openRangok() {
-    window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
-}
-
 function copyIP() {
     var serverIp = "195.228.230.105:25574";
   
@@ -143,12 +150,25 @@ function openWebstore() {
     window.open("https://blobmc-bolt.tebex.io", "_blank");
 }
 
+function openRangok() {
+    window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
+}
+
 function openGitHub() {
     window.location.href = "https://veghlacuska.github.io/BlobMCMedia/";
 }
 
 function openDC() {
     window.open("https://discord.gg/u6W8VRSNjq", "_blank");
+}
+
+function toggleTheme() {
+    var body = document.body;
+    if (body.classList.contains("dark-theme")) {
+        body.classList.remove("dark-theme");
+    } else {
+        body.classList.add("dark-theme");
+    }
 }
 </script>
 
