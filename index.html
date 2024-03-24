@@ -77,6 +77,10 @@ body {
     margin-top: 8px; /* Add space between button and counter */
 }
 
+.red {
+    background-color: red !important;
+}
+
 </style>
 </head>
 <body>
@@ -100,7 +104,7 @@ body {
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
 
     <!-- Like button and message -->
-    <button class="like-button" onclick="like()" id="likeButton">&lt;3</button>
+    <button class="like-button" onclick="like()" id="likeButton">(=)</button>
     <p class="like-message" id="likeMessage"></p>
     
     <!-- Counter -->
@@ -117,14 +121,14 @@ function like() {
         
         if (remainingTime > 0) {
             displayMessage("Következő Drop: " + formatTime(remainingTime));
-            alert("Várd meg a következő Drop-ot!")
+            alert("Várd meg a következő Drop-ot!");
             return;
         }
     }
     
     localStorage.setItem('lastLikeTime', new Date().getTime());
     displayMessage("Drop-olva!");
-    document.getElementById('likeButton').innerHTML = '&lt;3';
+    document.getElementById('likeButton').innerHTML = '(=)';
     document.getElementById('likeButton').classList.add('red');
     updateCounter();
 }
@@ -133,7 +137,7 @@ function displayMessage(message) {
     document.getElementById('likeMessage').textContent = message;
     setTimeout(function() {
         document.getElementById('likeMessage').textContent = '';
-    }, 5000); // Hide message after 3 seconds
+    }, 3000); // Hide message after 3 seconds
 }
 
 function formatTime(milliseconds) {
