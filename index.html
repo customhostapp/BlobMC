@@ -69,6 +69,8 @@ body {
 .button-container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .button-container > .button {
@@ -98,8 +100,10 @@ body {
     <button class="button github-button" onclick="openGitHub()">Közösség</button>
 </div>
 
-<!-- Button to open dc page (scaled down) -->
-<button class="button dc-button scaled-down-button" onclick="openDC()">Discord Szerver</button>
+<div class="content">
+    <!-- Button to open dc page (scaled down) -->
+    <button class="button dc-button scaled-down-button" onclick="openDC()">Discord Szerver</button>
+</div>
 
 <script>
 function openRangok() {
