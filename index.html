@@ -65,22 +65,29 @@ body {
     transform: scale(0.85); /* Scale down the button by 85% */
 }
 
+/* Adjusting button positions */
+.button-container {
+    display: flex;
+}
+
 </style>
 </head>
 <body>
 
 <div class="content">
-    <!-- Button to open rangok (scaled down) -->
-    <button class="button light-green-button scaled-down-button" onclick="openRangok()">Rangok</button>
+    <div class="button-container">
+        <!-- Button to open rangok (scaled down) -->
+        <button class="button light-green-button scaled-down-button" onclick="openRangok()">Rangok</button>
+        
+        <!-- Button to open webstore -->
+        <button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
+    </div>
 
     <!-- Button to trigger copying -->
     <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
 
     <!-- Button to open website -->
     <button class="button webpage-button" onclick="openWebsite()">BlobMC Honlap</button>
-
-    <!-- Button to open webstore -->
-    <button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
 
     <!-- Button to open GitHub page -->
     <button class="button github-button" onclick="openGitHub()">Közösség</button>
@@ -93,7 +100,7 @@ body {
 <script>
 function openRangok() {
     // Replace the URL with the actual link to the Rangok page
-    window.open("https://example.com/rangok", "_blank");
+    window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
 }
 
 function copyIP() {
