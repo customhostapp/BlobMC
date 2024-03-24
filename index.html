@@ -81,6 +81,11 @@ body {
     background-color: red !important;
 }
 
+/* Customize spacing between buttons */
+.custom-spacing {
+    margin-top: 40px; /* Adjust this value to set the spacing between buttons */
+}
+
 </style>
 </head>
 <body>
@@ -102,6 +107,9 @@ body {
 
     <!-- Button to open dc page -->
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
+
+    <!-- Adjusted spacing -->
+    <div class="custom-spacing"></div>
 
     <!-- Like button and message -->
     <button class="like-button" onclick="like()" id="likeButton">(=)</button>
@@ -137,7 +145,7 @@ function displayMessage(message) {
     document.getElementById('likeMessage').textContent = message;
     setTimeout(function() {
         document.getElementById('likeMessage').textContent = '';
-    }, 3000); // Hide message after 3 seconds
+    }, 5000); // Hide message after 3 seconds
 }
 
 function formatTime(milliseconds) {
