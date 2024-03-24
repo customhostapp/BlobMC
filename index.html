@@ -5,147 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BlobMC Gyorsweb</title>
 <style>
-body {
-    background-color: #333333; /* Dark Gray */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; /* Align items vertically */
-    margin: 0; /* Remove default margin */
-}
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 100px; /* Add padding around the container */
-    height: 100%; /* Set container height to 100% of viewport */
-    overflow-y: auto; /* Enable vertical scrolling */
-}
-.button {
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 10px 0; /* Add margin between buttons */
-    cursor: pointer;
-    border-radius: 10px;
-}
-.copy-button {
-    background-color: #CC3116; /* Red */
-}
-
-.webstore-button {
-    background-color: #E4B260; /* Orange */
-}
-.webpage-button {
-    background-color: #87CEFA; /* Blue */
-}
-.dc-button {
-    background-color: #411EA6; /* Dark */
-}
-.github-button {
-    background-color: #C380D0; /* Purple */
-}
-.light-green-button {
-    background-color: #90EE90; /* Light Green */
-}
-
-/* Like button style */
-.like-button {
-    background-color: transparent;
-    color: white;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-}
-.like-button:hover {
-    color: red; /* Change color on hover */
-}
+/* Your CSS styles here */
 </style>
 </head>
 <body>
 <div class="container">
-    <!-- Button to trigger copying -->
-    <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
-
-    <!-- Button to open webpage -->
-    <button class="button webpage-button" onclick="openWebsite()">BlobMC Honlap</button>
-
-    <!-- Button to open webstore -->
-    <button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
-
-    <!-- Button to open rangok -->
-    <button class="button light-green-button" onclick="openRangok()">Rangok</button>
-
-    <!-- Button to open GitHub page -->
-    <button class="button github-button" onclick="openGitHub()">Közösség</button>
-
-    <!-- Button to open dc page -->
-    <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
-
-    <!-- Like button -->
-    <button class="like-button" onclick="like()">❤</button>
-    <span id="like-counter">0</span>
+    <!-- Your buttons and other content here -->
+    <div id="likeSection">
+        <button class="button like-button" onclick="like()">Like</button>
+        <p id="likeMessage"></p>
+    </div>
 </div>
+
 <script>
-// Function to copy IP address
-function copyIP() {
-    var serverIp = "195.228.230.105:25574";
-  
-    // Create a temporary text area element
-    var tempTextArea = document.createElement("textarea");
-    tempTextArea.value = serverIp;
-  
-    // Append the text area element to the body
-    document.body.appendChild(tempTextArea);
-  
-    // Select and copy the text from the text area element
-    tempTextArea.select();
-    document.execCommand("copy");
-  
-    // Remove the temporary text area element
-    document.body.removeChild(tempTextArea);
-  
-    // Alert the copied text
-    alert("BlobMC szerver IP másolva, illeszd be ahova akarod!");
-}
-
-// Function to open website
-function openWebsite() {
-    window.open("https://www.blobmc.hu", "_blank");
-}
-
-// Function to open webstore
-function openWebstore() {
-    window.open("https://blobmc-bolt.tebex.io", "_blank");
-}
-
-// Function to open GitHub page
-function openGitHub() {
-    window.location.href = "https://veghlacuska.github.io/BlobMCMedia/";
-}
-
-// Function to open Discord server
-function openDC() {
-    window.open("https://discord.gg/u6W8VRSNjq", "_blank");
-}
-
-// Function to open Rangok
-function openRangok() {
-    window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
-}
-
-// Like button functionality
-var likeCounter = localStorage.getItem("likeCounter") || 0; // Retrieve like count from localStorage
-document.getElementById("like-counter").innerText = likeCounter; // Display initial like count
-
+// Function to handle the like button click
 function like() {
-    likeCounter++;
-    localStorage.setItem("likeCounter", likeCounter); // Store updated like count in localStorage
-    document.getElementById("like-counter").innerText = likeCounter; // Update like count display
+    // Check if the user has already liked
+    var lastLikeTime = localStorage.getItem('lastLikeTime');
+    if (lastLikeTime) {
+        // Calculate the time difference
+        var currentTime = new Date().getTime();
+        var elapsedTime = currentTime - parseInt(lastLikeTime);
+        var remainingTime = 43200000 - elapsedTime; // 12 hours in milliseconds
+        
+        if (remainingTime > 0) {
+            // Display the remaining time
+            displayMessage("You already liked. Please wait: " + formatTime(remainingTime));
+            return;
+        }
+    }
+    
+    // Perform the like action
+    localStorage.setItem('lastLikeTime', new Date().getTime());
+    displayMessage("Thanks for liking!");
+}
+
+// Function to display a message below the like button
+function displayMessage(message) {
+    document.getElementById('likeMessage').textContent = message;
+}
+
+// Function to format time in HH:MM:SS format
+function formatTime(milliseconds) {
+    var seconds = Math.floor(milliseconds / 1000);
+    var minutes = Math.floor(seconds / 60);
+    var hours = Math.floor(minutes / 60);
+    
+    seconds %= 60;
+    minutes %= 60;
+    hours %= 24;
+
+    return (hours < 10 ? '0' : '') + hours + ':' +
+           (minutes < 10 ? '0' : '') + minutes + ':' +
+           (seconds < 10 ? '0' : '') + seconds;
 }
 </script>
 </body>
