@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BlobMC Dashboard</title>
+<title>BlobMC Gyorsweb</title>
 <style>
 body {
     background-color: #333333; /* Dark Gray */
@@ -13,16 +13,14 @@ body {
     flex-direction: column; /* Align items vertically */
     margin: 0; /* Remove default margin */
 }
-
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px; /* Add padding around the container */
+    padding: 100px; /* Add padding around the container */
     height: 100%; /* Set container height to 100% of viewport */
     overflow-y: auto; /* Enable vertical scrolling */
 }
-
 .button {
     border: none;
     color: white;
@@ -35,7 +33,6 @@ body {
     cursor: pointer;
     border-radius: 10px;
 }
-
 .copy-button {
     background-color: #CC3116; /* Red */
 }
@@ -43,38 +40,21 @@ body {
 .webstore-button {
     background-color: #E4B260; /* Orange */
 }
-
 .webpage-button {
     background-color: #87CEFA; /* Blue */
 }
-
 .dc-button {
     background-color: #411EA6; /* Dark */
 }
-
 .github-button {
     background-color: #C380D0; /* Purple */
 }
-
 .light-green-button {
     background-color: #90EE90; /* Light Green */
 }
-
-.gif-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.gif {
-    width: 200px; /* Adjust width of gifs */
-    margin: 10px 0; /* Add margin between gifs */
-}
-
 </style>
 </head>
 <body>
-
 <div class="container">
     <!-- Button to trigger copying -->
     <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
@@ -93,15 +73,7 @@ body {
 
     <!-- Button to open dc page -->
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
-
-    <div class="gif-container">
-        <!-- Add your gifs here -->
-        <img class="gif" src="https://blobmc.hu/wp-content/uploads/2024/03/file-2.gif" alt="gif">
-        <img class="gif" src="https://blobmc.hu/wp-content/uploads/2024/03/stitch-6.gif" alt="gif">
-        <img class="gif" src="https://blobmc.hu/wp-content/uploads/2024/03/file-1-2.gif" alt="gif">
-    </div>
 </div>
-
 <script>
 function copyIP() {
     var serverIp = "195.228.230.105:25574";
@@ -123,28 +95,21 @@ function copyIP() {
     // Alert the copied text
     alert("BlobMC szerver IP másolva, illeszd be ahova akarod!");
 }
-
 function openWebsite() {
     window.open("https://www.blobmc.hu", "_blank");
 }
-
 function openWebstore() {
     window.open("https://blobmc-bolt.tebex.io", "_blank");
 }
-
 function openGitHub() {
     window.location.href = "https://veghlacuska.github.io/BlobMCMedia/";
 }
-
 function openDC() {
     window.open("https://discord.gg/u6W8VRSNjq", "_blank");
 }
-
 function openRangok() {
     window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
 }
-
 </script>
-
 </body>
 </html>
