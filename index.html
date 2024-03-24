@@ -59,9 +59,10 @@ body {
     border-radius: 50%;
     width: 80px;
     height: 80px;
-    line-height: 80px; /* Center the text vertically */
     font-size: 24px;
-    text-align: center; /* Center the text horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Counter styles */
@@ -112,7 +113,7 @@ function drop() {
         // Save the last drop time
         localStorage.setItem("lastDropTime", new Date().getTime().toString());
     } else {
-        alert("You can drop again tomorrow at 7:40 am CET.");
+        alert("Holnap újra Drop-olhatsz 7:40-kor! (am CET).");
     }
 }
 
