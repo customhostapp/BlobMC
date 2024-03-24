@@ -109,13 +109,14 @@ function like() {
         var remainingTime = 43200000 - elapsedTime; // 12 hours in milliseconds
         
         if (remainingTime > 0) {
-            displayMessage("Következő like: " + formatTime(remainingTime));
+            displayMessage("You already liked. Please wait: " + formatTime(remainingTime));
             return;
         }
     }
     
     localStorage.setItem('lastLikeTime', new Date().getTime());
-    displayMessage("Likeolva");
+    displayMessage("Thanks for liking!");
+    document.getElementById('likeButton').innerHTML = '&lt;3';
     document.getElementById('likeButton').classList.add('red');
 }
 
