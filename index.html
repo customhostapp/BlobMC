@@ -125,9 +125,7 @@ function drop() {
             var dropButton = document.querySelector('.drop-button');
             dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
             dropButton.textContent = "<->"; // Change title to <->
-        }
-        
-        if (currentCount % 5 === 1) {
+        } else {
             var dropButton = document.querySelector('.drop-button');
             dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
             dropButton.textContent = "(=)"; // Change title back to (=)
@@ -216,18 +214,6 @@ function setInitialDropCount() {
 }
 
 // Call the function to set initial drop count and check for color/title change
-setInitialDropCount();
-
-// Function to set the initial drop count from cookies
-function setInitialDropCount() {
-    console.log("Executing setInitialDropCount function."); // Log function execution
-    var dropCount = localStorage.getItem("drop_count");
-    if (dropCount) {
-        document.getElementById("drop-counter").textContent = dropCount;
-    }
-}
-
-// Call the function to set initial drop count
 setInitialDropCount();
 
 </script>
