@@ -15,13 +15,6 @@ body {
     margin: 0; /* Remove default margin */
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px; /* Add space between the content and buttons */
-}
-
 .button {
     border: none;
     color: white;
@@ -65,42 +58,34 @@ body {
     transform: scale(0.85); /* Scale down the button by 85% */
 }
 
-/* Adjusting button positions */
-.button-container {
+.row {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
 }
 
-.button-container > .button {
-    margin: 4px 2px; /* Adjust margin for buttons */
+.row > .button {
+    margin: 4px 8px; /* Adjust margin for buttons */
 }
 
 </style>
 </head>
 <body>
 
-<div class="content">
-    <div class="button-container">
-        <!-- Button to open rangok (scaled down) -->
-        <button class="button light-green-button scaled-down-button" onclick="openRangok()">Rangok</button>
-        
-        <!-- Button to open webstore -->
-        <button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
-    </div>
-
-    <!-- Button to trigger copying -->
-    <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
-
-    <!-- Button to open website -->
+<div class="row">
+    <!-- Button to open webpage -->
     <button class="button webpage-button" onclick="openWebsite()">BlobMC Honlap</button>
-
+    <!-- Button to open webstore -->
+    <button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
     <!-- Button to open GitHub page -->
     <button class="button github-button" onclick="openGitHub()">Közösség</button>
 </div>
 
-<div class="content">
+<div class="row">
+    <!-- Button to trigger copying -->
+    <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
+    <!-- Button to open rangok (scaled down) -->
+    <button class="button light-green-button scaled-down-button" onclick="openRangok()">Rangok</button>
     <!-- Button to open dc page (scaled down) -->
     <button class="button dc-button scaled-down-button" onclick="openDC()">Discord Szerver</button>
 </div>
@@ -108,7 +93,7 @@ body {
 <script>
 function openRangok() {
     // Replace the URL with the actual link to the Rangok page
-    window.open("https://example.com/rangok", "_blank");
+    window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
 }
 
 function copyIP() {
