@@ -9,10 +9,15 @@ body {
     background-color: #333333; /* Light Gray */
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    flex-direction: column; /* Align items vertically */
+    align-items: center;
     height: 100vh; /* Ensure the body takes up the full height of the viewport */
     margin: 0; /* Remove default margin */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .button {
@@ -62,23 +67,25 @@ body {
 </head>
 <body>
 
-<!-- Button to trigger copying -->
-<button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
+<div class="container">
+    <!-- Button to trigger copying -->
+    <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
 
-<!-- Button to open webpage -->
-<button class="button webpage-button" onclick="openWebsite()">BlobMC Honlap</button>
+    <!-- Button to open webpage -->
+    <button class="button webpage-button" onclick="openWebsite()">BlobMC Honlap</button>
 
-<!-- Button to open webstore -->
-<button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
+    <!-- Button to open webstore -->
+    <button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
 
-<!-- Button to open rangok -->
-<button class="button light-green-button" onclick="openRangok()">Rangok</button>
+    <!-- Button to open rangok -->
+    <button class="button light-green-button" onclick="openRangok()">Rangok</button>
 
-<!-- Button to open GitHub page -->
-<button class="button github-button" onclick="openGitHub()">Közösség</button>
+    <!-- Button to open GitHub page -->
+    <button class="button github-button" onclick="openGitHub()">Közösség</button>
 
-<!-- Button to open dc page -->
-<button class="button dc-button" onclick="openDC()">Discord Szerver</button>
+    <!-- Button to open dc page -->
+    <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
+</div>
 
 <script>
 function openRangok() {
