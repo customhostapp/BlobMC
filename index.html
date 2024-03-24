@@ -120,8 +120,8 @@ function drop() {
         // Save the last drop time
         localStorage.setItem("lastDropTime", new Date().getTime().toString());
 
-        // Check if current count is a multiple of 5
-        if (currentCount % 5 === 0) {
+        // Check if current count is between 5 and 9
+        if (currentCount >= 5 && currentCount <= 9) {
             var dropButton = document.querySelector('.drop-button');
             dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
             dropButton.textContent = "<->"; // Change title to <->
