@@ -71,12 +71,16 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 0;
+    top: 100%; /* Move the GIF container below the viewport */
     left: 0;
-    background: url('https://cdn.discordapp.com/attachments/1208705442759319582/1221348406220296233/file-2.gif?ex=66124057&is=65ffcb57&hm=7f426c2ca03e917b36e0c14604f96861cbf7aeeeac67aa7ca397a8073ebd823d&') center center no-repeat;
-    background-size: cover;
-    z-index: -1; /* Place behind other content */
+    background-color: black; /* Black circle background */
     border-radius: 50%; /* Create a black circle */
+    z-index: -1; /* Place behind other content */
+    background-image: url('your-gif-url.gif'); /* Add the URL of your GIF */
+    background-size: contain; /* Scale the background image to fit the container */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-position: center; /* Center the background image */
+    opacity: 0.5; /* Set the opacity of the GIF */
 }
 
 </style>
