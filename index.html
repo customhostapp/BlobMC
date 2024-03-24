@@ -198,6 +198,24 @@ function openRangok() {
     window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
 }
 
+// Function to set initial drop count and check for color/title change
+function setInitialDropCount() {
+    var dropCount = localStorage.getItem("drop_count");
+    if (dropCount) {
+        var counterElement = document.getElementById("drop-counter");
+        counterElement.textContent = dropCount;
+        // Check if drop count is a multiple of 5
+        if (parseInt(dropCount) % 5 === 0) {
+            var dropButton = document.querySelector('.drop-button');
+            dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
+            dropButton.textContent = "<->"; // Change title to <->
+        }
+    }
+}
+
+// Call the function to set initial drop count and check for color/title change
+setInitialDropCount();
+
 // Function to set the initial drop count from cookies
 function setInitialDropCount() {
     var dropCount = localStorage.getItem("drop_count");
@@ -208,6 +226,7 @@ function setInitialDropCount() {
 
 // Call the function to set initial drop count
 setInitialDropCount();
+
 </script>
 </body>
 </html>
