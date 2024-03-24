@@ -77,6 +77,15 @@ body {
     margin-top: 8px; /* Add space between button and counter */
 }
 
+.red {
+    background-color: red !important;
+}
+
+/* Customize spacing between buttons */
+.custom-spacing {
+    margin-top: 40px; /* Adjust this value to set the spacing between buttons */
+}
+
 </style>
 </head>
 <body>
@@ -99,8 +108,11 @@ body {
     <!-- Button to open dc page -->
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
 
+    <!-- Adjusted spacing -->
+    <div class="custom-spacing"></div>
+
     <!-- Like button and message -->
-    <button class="like-button" onclick="like()" id="likeButton">&lt;3</button>
+    <button class="like-button" onclick="like()" id="likeButton">(=)</button>
     <p class="like-message" id="likeMessage"></p>
     
     <!-- Counter -->
@@ -108,53 +120,32 @@ body {
 </div>
 
 <script>
-window.onload = function() {
-    var count = localStorage.getItem('likeCount');
-    if (count !== null) {
-        document.getElementById('likeCounter').textContent = 'Likes: ' + count;
-    }
-};
-
 function like() {
-    var now = new Date();
-    var currentHour = now.getUTCHours(); // Get current hour in UTC time
-    var currentMinute = now.getUTCMinutes(); // Get current minute in UTC time
-    var localHour = (currentHour + 1) % 24; // Convert UTC time to local time (CET)
-    var localMinute = currentMinute;
-
-    // Check if current time is after 7:40 AM CET
-    if (localHour > 7 || (localHour === 7 && localMinute >= 40)) {
-        var lastLikeTime = localStorage.getItem('lastLikeTime');
-        if (lastLikeTime) {
-            // Check if enough time has passed since last like
-            var currentTime = now.getTime();
-            var elapsedTime = currentTime - parseInt(lastLikeTime);
-            var remainingTime = 86400000 - elapsedTime; // 24 hours in milliseconds
-
-            if (remainingTime > 0) {
-                displayMessage("Következő Drop: " + formatTime(remainingTime));
-                alert("Várd meg a következő Drop-ot!");
-                return;
-            }
+    var lastLikeTime = localStorage.getItem('lastLikeTime');
+    if (lastLikeTime) {
+        var currentTime = new Date().getTime();
+        var elapsedTime = currentTime - parseInt(lastLikeTime);
+        var remainingTime = 43200000 - elapsedTime; // 12 hours in milliseconds
+        
+        if (remainingTime > 0) {
+            displayMessage("Következő Drop: " + formatTime(remainingTime));
+            alert("Várd meg a következő Drop-ot!");
+            return;
         }
-
-        // Record the time of the like
-        localStorage.setItem('lastLikeTime', now.getTime());
-        displayMessage("Drop-olva!");
-        document.getElementById('likeButton').innerHTML = '&lt;3';
-        document.getElementById('likeButton').classList.add('red');
-        updateCounter();
-    } else {
-        // Display message indicating that likes are only allowed after 7:40 AM CET
-        displayMessage("Likes are only allowed after 7:40 AM CET");
     }
+    
+    localStorage.setItem('lastLikeTime', new Date().getTime());
+    displayMessage("Drop-olva!");
+    document.getElementById('likeButton').innerHTML = '(=)';
+    document.getElementById('likeButton').classList.add('red');
+    updateCounter();
 }
 
 function displayMessage(message) {
     document.getElementById('likeMessage').textContent = message;
     setTimeout(function() {
         document.getElementById('likeMessage').textContent = '';
-    }, 5000); // Hide message after 5 seconds
+    }, 5000); // Hide message after 3 seconds
 }
 
 function formatTime(milliseconds) {
