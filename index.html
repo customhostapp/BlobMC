@@ -139,10 +139,13 @@ function openRangok() {
 }
 
 // Like button functionality
-var likeCounter = 0;
+var likeCounter = localStorage.getItem("likeCounter") || 0; // Retrieve like count from localStorage
+document.getElementById("like-counter").innerText = likeCounter; // Display initial like count
+
 function like() {
     likeCounter++;
-    document.getElementById("like-counter").innerText = likeCounter;
+    localStorage.setItem("likeCounter", likeCounter); // Store updated like count in localStorage
+    document.getElementById("like-counter").innerText = likeCounter; // Update like count display
 }
 </script>
 </body>
