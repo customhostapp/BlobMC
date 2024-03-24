@@ -6,21 +6,20 @@
 <title>BlobMC Dashboard</title>
 <style>
 body {
-    background-image: url('https://cdn.discordapp.com/attachments/1208705442759319582/1221337332767133696/Wallpaper3.png?ex=66123607&is=65ffc107&hm=091e713d4721b453fdb622044e0d7dcd15fb92abecaad815e5500651dbf29929&');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: #333333; /* Dark gray background */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh; /* Ensure the body takes up the full height of the viewport */
     margin: 0; /* Remove default margin */
+    overflow-y: scroll; /* Allow vertical scrolling */
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 20px; /* Add padding at the top for spacing */
 }
 
 .button {
@@ -35,6 +34,7 @@ body {
     cursor: pointer;
     border-radius: 10px;
     position: relative; /* Make the button position relative */
+    background-color: rgba(0, 0, 0, 0.5); /* Dark background for buttons */
 }
 
 .copy-button {
@@ -66,6 +66,19 @@ body {
     transform: scale(0.85); /* Scale down the button by 85% */
 }
 
+/* Style for the GIF container */
+.gif-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url('https://cdn.discordapp.com/attachments/1208705442759319582/1221348406220296233/file-2.gif?ex=66124057&is=65ffcb57&hm=7f426c2ca03e917b36e0c14604f96861cbf7aeeeac67aa7ca397a8073ebd823d&') center center no-repeat;
+    background-size: cover;
+    z-index: -1; /* Place behind other content */
+    border-radius: 50%; /* Create a black circle */
+}
+
 </style>
 </head>
 <body>
@@ -89,6 +102,8 @@ body {
     <!-- Button to open dc page -->
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
 </div>
+
+<div class="gif-container"></div> <!-- GIF container -->
 
 <script>
 function openRangok() {
@@ -131,7 +146,6 @@ function openGitHub() {
 function openDC() {
     window.open("https://discord.gg/u6W8VRSNjq", "_blank");
 }
-
 </script>
 
 </body>
