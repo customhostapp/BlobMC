@@ -121,7 +121,7 @@ body {
 
 <script>
 function like() {
-    var lastLikeTime = localStorage.getItem('lastLikeTime');
+    var lastLikeTime = getCookie('lastLikeTime');
     if (lastLikeTime) {
         var currentTime = new Date().getTime();
         var lastLikeDate = new Date(parseInt(lastLikeTime));
@@ -134,12 +134,12 @@ function like() {
         var todayYear = today.getFullYear();
         
         if (lastLikeDay === todayDay && lastLikeMonth === todayMonth && lastLikeYear === todayYear) {
-            displayMessage("Ma már Drop-oltál!");
+            displayMessage("Már ma kedveltél!");
             return;
         }
     }
     
-    localStorage.setItem('lastLikeTime', new Date().getTime());
+    setCookie('lastLikeTime', new Date().getTime(), 365); // Save cookie for 1 year
     displayMessage("Drop-olva!");
     document.getElementById('likeButton').innerHTML = '(=)';
     document.getElementById('likeButton').classList.add('red');
@@ -154,34 +154,32 @@ function displayMessage(message) {
 }
 
 function updateCounter() {
-    var count = localStorage.getItem('likeCount');
+    var count = getCookie('likeCount');
     count = count ? parseInt(count) + 1 : 1;
-    localStorage.setItem('likeCount', count);
+    setCookie('likeCount', count, 365); // Save cookie for 1 year
     document.getElementById('likeCounter').textContent = 'Drop-ok: ' + count;
 }
 
-// Function to reset like count at 7:40 AM CET
-function resetLikesAt7_40() {
-    var now = new Date();
-    var targetTime = new Date();
-    targetTime.setUTCHours(5); // 7:40 AM CET is equivalent to 5:40 AM UTC
-    targetTime.setUTCMinutes(40);
-    targetTime.setUTCSeconds(0);
-    targetTime.setUTCMilliseconds(0);
-
-    if (now.getTime() > targetTime.getTime()) {
-        targetTime.setUTCDate(targetTime.getUTCDate() + 1); // Next day
+function setCookie(name, value, days) {
+    var expires = '';
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = '; expires=' + date.toUTCString();
     }
-
-    var timeUntilReset = targetTime.getTime() - now.getTime();
-    setTimeout(function() {
-        localStorage.removeItem('lastLikeTime');
-        localStorage.removeItem('likeCount');
-    }, timeUntilReset);
+    document.cookie = name + '=' + value + expires + '; path=/';
 }
 
-// Call the function to reset likes at 7:40 AM CET
-resetLikesAt7_40();
+function getCookie(name) {
+    var nameEQ = name + '=';
+    var ca = document.cookie.split(';');
+    for(var i=0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
 
 // Functions for existing buttons (copyIP, openWebsite, etc.) here
 function copyIP() {
@@ -208,7 +206,5 @@ function openRangok() {
     // Your existing code for opening ranks page
 }
 </script>
-</body>
-</html>
 </body>
 </html>
