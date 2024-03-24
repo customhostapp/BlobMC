@@ -32,7 +32,6 @@ body {
     margin: 10px 0; /* Add margin between buttons */
     cursor: pointer;
     border-radius: 10px;
-    background-color: #90EE90; /* Light Green */
 }
 .copy-button {
     background-color: #CC3116; /* Red */
@@ -110,13 +109,13 @@ function like() {
         var remainingTime = 43200000 - elapsedTime; // 12 hours in milliseconds
         
         if (remainingTime > 0) {
-            displayMessage("You already liked. Please wait: " + formatTime(remainingTime));
+            displayMessage("Következő like: " + formatTime(remainingTime));
             return;
         }
     }
     
     localStorage.setItem('lastLikeTime', new Date().getTime());
-    displayMessage("Thanks for liking!");
+    displayMessage("Likeolva");
     document.getElementById('likeButton').classList.add('red');
 }
 
