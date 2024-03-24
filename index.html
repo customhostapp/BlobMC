@@ -201,12 +201,14 @@ function openRangok() {
 // Function to set initial drop count and check for color/title change
 function setInitialDropCount() {
     var dropCount = localStorage.getItem("drop_count");
+    console.log("Drop count:", dropCount); // Log drop count to console
     if (dropCount) {
         var counterElement = document.getElementById("drop-counter");
         counterElement.textContent = dropCount;
         // Check if drop count is a multiple of 5
         if (parseInt(dropCount) % 5 === 0) {
             var dropButton = document.querySelector('.drop-button');
+            console.log("Button color and title changed."); // Log color/title change to console
             dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
             dropButton.textContent = "<->"; // Change title to <->
         }
