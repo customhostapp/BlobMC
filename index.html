@@ -20,6 +20,13 @@ body {
     position: relative;
 }
 
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .button {
     border: none;
     color: white;
@@ -67,10 +74,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    bottom: 20px; /* Adjust the position from the bottom */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Adjust for horizontal centering */
+    position: relative;
+    margin-bottom: 20px; /* Add space between GIFs */
 }
 
 /* Style for the GIFs */
@@ -84,35 +89,36 @@ body {
 <body>
 
 <div class="container">
-    <!-- Button to trigger copying -->
-    <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
+    <div class="button-container">
+        <!-- Button to trigger copying -->
+        <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
 
-    <!-- Button to open webpage -->
-    <button class="button webpage-button" onclick="openWebsite()">BlobMC Honlap</button>
+        <!-- Button to open webpage -->
+        <button class="button webpage-button" onclick="openWebsite()">BlobMC Honlap</button>
 
-    <!-- Button to open webstore -->
-    <button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
+        <!-- Button to open webstore -->
+        <button class="button webstore-button" onclick="openWebstore()">BlobMC Webáruház</button>
 
-    <!-- Button to open rangok -->
-    <button class="button light-green-button" onclick="openRangok()">Rangok</button>
+        <!-- Button to open rangok -->
+        <button class="button light-green-button" onclick="openRangok()">Rangok</button>
 
-    <!-- Button to open GitHub page -->
-    <button class="button github-button" onclick="openGitHub()">Közösség</button>
+        <!-- Button to open GitHub page -->
+        <button class="button github-button" onclick="openGitHub()">Közösség</button>
 
-    <!-- Button to open dc page -->
-    <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
+        <!-- Button to open dc page -->
+        <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
+    </div>
 
-    <!-- Black circle with GIF inside -->
     <div class="circle">
         <img src="https://cdn.discordapp.com/attachments/1208705442759319582/1221348406220296233/file-2.gif?ex=66124057&is=65ffcb57&hm=7f426c2ca03e917b36e0c14604f96861cbf7aeeeac67aa7ca397a8073ebd823d&" alt="GIF" class="gif">
     </div>
 
     <!-- Additional GIFs -->
-    <div class="circle" style="bottom: 300px;">
+    <div class="circle">
         <img src="https://blobmc.hu/wp-content/uploads/2024/03/stitch-6.gif" alt="GIF" class="gif">
     </div>
 
-    <div class="circle" style="bottom: 550px;">
+    <div class="circle">
         <img src="https://blobmc.hu/wp-content/uploads/2024/03/file-1-2.gif" alt="GIF" class="gif">
     </div>
 </div>
