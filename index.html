@@ -108,6 +108,7 @@ body {
 </div>
 <script>
 // Function to increment drop counter and save to cookies
+// Function to increment drop counter and save to cookies
 function drop() {
     var lastDropTime = localStorage.getItem("lastDropTime");
     if (!lastDropTime || (new Date().getTime() - parseInt(lastDropTime)) >= (24 * 60 * 60 * 1000)) {
@@ -125,7 +126,14 @@ function drop() {
             var dropButton = document.querySelector('.drop-button');
             dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
             dropButton.textContent = "<->"; // Change title to <->
-        } else {
+        } 
+        // Check if current count is between 10 and 14
+        else if (currentCount >= 10 && currentCount <= 14) {
+            var dropButton = document.querySelector('.drop-button');
+            dropButton.style.backgroundColor = '#87CEFA'; // Change color to blue
+            dropButton.textContent = "[+]"; // Change title to [+]
+        }
+        else {
             var dropButton = document.querySelector('.drop-button');
             dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
             dropButton.textContent = "(=)"; // Change title back to (=)
@@ -209,6 +217,13 @@ function setInitialDropCount() {
             console.log("Button color and title changed."); // Log color/title change to console
             dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
             dropButton.textContent = "<->"; // Change title to <->
+        } 
+        // Check if drop count is between 10 and 14
+        else if (parseInt(dropCount) >= 10 && parseInt(dropCount) <= 14) {
+            var dropButton = document.querySelector('.drop-button');
+            console.log("Button color and title changed."); // Log color/title change to console
+            dropButton.style.backgroundColor = '#87CEFA'; // Change color to blue
+            dropButton.textContent = "[+]"; // Change title to [+]
         }
     }
 }
