@@ -72,6 +72,11 @@ body {
     margin-top: 10px; /* Add space between button and message */
 }
 
+.counter {
+    color: white;
+    margin-top: 10px; /* Add space between button and counter */
+}
+
 </style>
 </head>
 <body>
@@ -97,6 +102,9 @@ body {
     <!-- Like button and message -->
     <button class="like-button" onclick="like()" id="likeButton">&lt;3</button>
     <p class="like-message" id="likeMessage"></p>
+    
+    <!-- Counter -->
+    <p class="counter" id="likeCounter">Likes: 0</p>
 </div>
 
 <script>
@@ -117,10 +125,14 @@ function like() {
     displayMessage("Thanks for liking!");
     document.getElementById('likeButton').innerHTML = '&lt;3';
     document.getElementById('likeButton').classList.add('red');
+    updateCounter();
 }
 
 function displayMessage(message) {
     document.getElementById('likeMessage').textContent = message;
+    setTimeout(function() {
+        document.getElementById('likeMessage').textContent = '';
+    }, 3000); // Hide message after 3 seconds
 }
 
 function formatTime(milliseconds) {
@@ -135,6 +147,13 @@ function formatTime(milliseconds) {
     return (hours < 10 ? '0' : '') + hours + ':' +
            (minutes < 10 ? '0' : '') + minutes + ':' +
            (seconds < 10 ? '0' : '') + seconds;
+}
+
+function updateCounter() {
+    var count = localStorage.getItem('likeCount');
+    count = count ? parseInt(count) + 1 : 1;
+    localStorage.setItem('likeCount', count);
+    document.getElementById('likeCounter').textContent = 'Likes: ' + count;
 }
 
 // Functions for existing buttons (copyIP, openWebsite, etc.) here
