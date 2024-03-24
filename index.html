@@ -24,7 +24,7 @@ body {
 }
 
 .button {
-    border: none;
+    border: 2px solid transparent; /* Transparent border */
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -66,6 +66,16 @@ body {
     transform: scale(0.85); /* Scale down the button by 85% */
 }
 
+/* Hover effect for buttons */
+.button:hover {
+    border-color: white; /* Change border color on hover */
+}
+
+.dark-theme-button {
+    background-color: black;
+    border: 2px solid white;
+}
+
 </style>
 </head>
 <body>
@@ -88,6 +98,9 @@ body {
 
     <!-- Button to open dc page -->
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
+
+    <!-- Button to toggle dark/white theme -->
+    <button class="button dark-theme-button" onclick="toggleTheme()">Dark/White Theme</button>
 </div>
 
 <script>
@@ -132,7 +145,12 @@ function openDC() {
     window.open("https://discord.gg/u6W8VRSNjq", "_blank");
 }
 
+function toggleTheme() {
+    var buttons = document.querySelectorAll('.button');
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.toggle('dark-theme-button');
+    }
+}
 </script>
 
-</body>
-</html>
+</body
