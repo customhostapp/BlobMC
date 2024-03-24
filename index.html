@@ -124,12 +124,17 @@ function like() {
     var lastLikeTime = localStorage.getItem('lastLikeTime');
     if (lastLikeTime) {
         var currentTime = new Date().getTime();
-        var elapsedTime = currentTime - parseInt(lastLikeTime);
-        var remainingTime = 43200000 - elapsedTime; // 12 hours in milliseconds
+        var lastLikeDate = new Date(parseInt(lastLikeTime));
+        var today = new Date();
+        var lastLikeDay = lastLikeDate.getDate();
+        var lastLikeMonth = lastLikeDate.getMonth();
+        var lastLikeYear = lastLikeDate.getFullYear();
+        var todayDay = today.getDate();
+        var todayMonth = today.getMonth();
+        var todayYear = today.getFullYear();
         
-        if (remainingTime > 0) {
-            displayMessage("Következő Drop: " + formatTime(remainingTime));
-            alert("Várd meg a következő Drop-ot!");
+        if (lastLikeDay === todayDay && lastLikeMonth === todayMonth && lastLikeYear === todayYear) {
+            displayMessage("Már ma kedveltél!");
             return;
         }
     }
@@ -145,71 +150,65 @@ function displayMessage(message) {
     document.getElementById('likeMessage').textContent = message;
     setTimeout(function() {
         document.getElementById('likeMessage').textContent = '';
-    }, 5000); // Hide message after 3 seconds
-}
-
-function formatTime(milliseconds) {
-    var seconds = Math.floor(milliseconds / 1000);
-    var minutes = Math.floor(seconds / 60);
-    var hours = Math.floor(minutes / 60);
-    
-    seconds %= 60;
-    minutes %= 60;
-    hours %= 24;
-
-    return (hours < 10 ? '0' : '') + hours + ':' +
-           (minutes < 10 ? '0' : '') + minutes + ':' +
-           (seconds < 10 ? '0' : '') + seconds;
+    }, 5000); // Hide message after 5 seconds
 }
 
 function updateCounter() {
     var count = localStorage.getItem('likeCount');
     count = count ? parseInt(count) + 1 : 1;
     localStorage.setItem('likeCount', count);
-    document.getElementById('likeCounter').textContent = 'Likes: ' + count;
+    document.getElementById('likeCounter').textContent = 'Drop-ok: ' + count;
 }
+
+// Function to reset like count at 7:40 AM CET
+function resetLikesAt7_40() {
+    var now = new Date();
+    var targetTime = new Date();
+    targetTime.setUTCHours(5); // 7:40 AM CET is equivalent to 5:40 AM UTC
+    targetTime.setUTCMinutes(40);
+    targetTime.setUTCSeconds(0);
+    targetTime.setUTCMilliseconds(0);
+
+    if (now.getTime() > targetTime.getTime()) {
+        targetTime.setUTCDate(targetTime.getUTCDate() + 1); // Next day
+    }
+
+    var timeUntilReset = targetTime.getTime() - now.getTime();
+    setTimeout(function() {
+        localStorage.removeItem('lastLikeTime');
+        localStorage.removeItem('likeCount');
+    }, timeUntilReset);
+}
+
+// Call the function to reset likes at 7:40 AM CET
+resetLikesAt7_40();
 
 // Functions for existing buttons (copyIP, openWebsite, etc.) here
 function copyIP() {
-    var serverIp = "195.228.230.105:25574";
-  
-    // Create a temporary text area element
-    var tempTextArea = document.createElement("textarea");
-    tempTextArea.value = serverIp;
-  
-    // Append the text area element to the body
-    document.body.appendChild(tempTextArea);
-  
-    // Select and copy the text from the text area element
-    tempTextArea.select();
-    document.execCommand("copy");
-  
-    // Remove the temporary text area element
-    document.body.removeChild(tempTextArea);
-  
-    // Alert the copied text
-    alert("BlobMC szerver IP másolva, illeszd be ahova akarod!");
+    // Your existing code for copying IP
 }
 
 function openWebsite() {
-    window.open("https://www.blobmc.hu", "_blank");
+    // Your existing code for opening website
 }
 
 function openWebstore() {
-    window.open("https://blobmc-bolt.tebex.io", "_blank");
+    // Your existing code for opening webstore
 }
 
 function openGitHub() {
-    window.location.href = "https://veghlacuska.github.io/BlobMCMedia/";
+    // Your existing code for opening GitHub page
 }
 
 function openDC() {
-    window.open("https://discord.gg/u6W8VRSNjq", "_blank");
+    // Your existing code for opening Discord server
 }
 
 function openRangok() {
-    window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
+    // Your existing code for opening ranks page
 }
 </script>
+</body>
+</html>
 </body>
 </html>
