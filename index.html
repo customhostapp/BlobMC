@@ -77,6 +77,11 @@ body {
 </head>
 <body>
 <div class="container">
+
+    <!-- Input field for setting drops -->
+    <input type="number" id="drop-input" placeholder="Enter desired drops">
+    <button class="button" onclick="setDrops()">Set Drops</button>
+
     <!-- Button to trigger copying -->
     <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
 
@@ -116,6 +121,20 @@ function drop() {
         localStorage.setItem("lastDropTime", new Date().getTime().toString());
     } else {
         alert("Holnap újra Drop-olhatsz 7:40-kor!.");
+    }
+}
+
+function setDrops() {
+    var dropInput = document.getElementById("drop-input");
+    var newDropCount = parseInt(dropInput.value);
+    if (!isNaN(newDropCount) && newDropCount >= 0) {
+        var counterElement = document.getElementById("drop-counter");
+        counterElement.textContent = newDropCount;
+        // Save the new drop count to cookies
+        localStorage.setItem("drop_count", newDropCount);
+        alert("Drops set successfully!");
+    } else {
+        alert("Please enter a valid number of drops.");
     }
 }
 
