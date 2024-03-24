@@ -31,21 +31,52 @@ body {
     font-size: 16px;
     margin: 10px 0; /* Add margin between buttons */
     cursor: pointer;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    background-color: #007bff; /* Blue */
+    border-radius: 10px;
 }
+.copy-button {
+    background-color: #CC3116; /* Red */
+}
+
+.webstore-button {
+    background-color: #E4B260; /* Orange */
+}
+.webpage-button {
+    background-color: #87CEFA; /* Blue */
+}
+.dc-button {
+    background-color: #411EA6; /* Dark */
+}
+.github-button {
+    background-color: #C380D0; /* Purple */
+}
+
+.light-green-button {
+    background-color: #90EE90; /* Light Green */
+}
+
 .like-button {
-    position: relative;
+    border: none;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50%; /* Make it a circle */
+    background-color: #CC3116; /* Red heart */
+    color: white; /* White text */
 }
-.like-button::before {
-    content: "<3";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+.like-message {
+    color: white;
+    margin-top: 10px; /* Add space between button and message */
 }
+
+.counter {
+    color: white;
+    margin-top: 10px; /* Add space between button and counter */
+}
+
 </style>
 </head>
 <body>
@@ -68,55 +99,64 @@ body {
     <!-- Button to open dc page -->
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
 
-    <!-- Like button -->
-    <button class="button like-button" onclick="like()"></button>
-    <p id="like-count">0</p>
-    <p id="like-message" style="display: none;"></p>
+    <!-- Like button and message -->
+    <button class="like-button" onclick="like()" id="likeButton">&lt;3</button>
+    <p class="like-message" id="likeMessage"></p>
+    
+    <!-- Counter -->
+    <p class="counter" id="likeCounter">Likes: 0</p>
 </div>
+
 <script>
-// Load like count from local storage when page loads
-window.onload = function() {
-    var likes = localStorage.getItem('likes');
-    if (likes) {
-        document.getElementById('like-count').innerText = likes;
-    }
-};
-
-// Function to increment like count
 function like() {
-    // Check if user has already liked
-    var alreadyLiked = localStorage.getItem('alreadyLiked');
-    if (alreadyLiked) {
-        // If already liked, display message and return
-        var message = "You already liked this.";
-        var timeLeft = calculateTimeLeft();
-        if (timeLeft > 0) {
-            message += " Please wait " + formatTime(timeLeft) + " before liking again.";
+    var lastLikeTime = localStorage.getItem('lastLikeTime');
+    if (lastLikeTime) {
+        var currentTime = new Date().getTime();
+        var elapsedTime = currentTime - parseInt(lastLikeTime);
+        var remainingTime = 43200000 - elapsedTime; // 12 hours in milliseconds
+        
+        if (remainingTime > 0) {
+            displayMessage("You already liked. Please wait: " + formatTime(remainingTime));
+            return;
         }
-        document.getElementById('like-message').innerText = message;
-        document.getElementById('like-message').style.display = 'block';
-        setTimeout(function() {
-            document.getElementById('like-message').style.display = 'none';
-        }, 3000); // Hide message after 3 seconds
-        return;
     }
-
-    // Increment like count
-    var likes = parseInt(localStorage.getItem('likes')) || 0;
-    likes++;
-    localStorage.setItem('likes', likes);
-    document.getElementById('like-count').innerText = likes;
-
-    // Set timer to reset like status after 12 hours
-    localStorage.setItem('alreadyLiked', 'true');
-    setTimeout(function() {
-        localStorage.removeItem('alreadyLiked');
-    }, 12 * 60 * 60 * 1000); // 12 hours
-
-    // Change button color to red
-    document.querySelector('.like-button').style.backgroundColor = '#ff0000';
+    
+    localStorage.setItem('lastLikeTime', new Date().getTime());
+    displayMessage("Thanks for liking!");
+    document.getElementById('likeButton').innerHTML = '&lt;3';
+    document.getElementById('likeButton').classList.add('red');
+    updateCounter();
 }
 
+function displayMessage(message) {
+    document.getElementById('likeMessage').textContent = message;
+    setTimeout(function() {
+        document.getElementById('likeMessage').textContent = '';
+    }, 3000); // Hide message after 3 seconds
+}
+
+function formatTime(milliseconds) {
+    var seconds = Math.floor(milliseconds / 1000);
+    var minutes = Math.floor(seconds / 60);
+    var hours = Math.floor(minutes / 60);
+    
+    seconds %= 60;
+    minutes %= 60;
+    hours %= 24;
+
+    return (hours < 10 ? '0' : '') + hours + ':' +
+           (minutes < 10 ? '0' : '') + minutes + ':' +
+           (seconds < 10 ? '0' : '') + seconds;
+}
+
+function updateCounter() {
+    var count = localStorage.getItem('likeCount');
+    count = count ? parseInt(count) + 1 : 1;
+    localStorage.setItem('likeCount', count);
+    document.getElementById('likeCounter').textContent = 'Likes: ' + count;
+}
+
+// Functions for existing buttons (copyIP, openWebsite, etc.) here
 function copyIP() {
     var serverIp = "195.228.230.105:25574";
   
@@ -137,37 +177,25 @@ function copyIP() {
     // Alert the copied text
     alert("BlobMC szerver IP másolva, illeszd be ahova akarod!");
 }
+
 function openWebsite() {
     window.open("https://www.blobmc.hu", "_blank");
 }
+
 function openWebstore() {
     window.open("https://blobmc-bolt.tebex.io", "_blank");
 }
+
 function openGitHub() {
     window.location.href = "https://veghlacuska.github.io/BlobMCMedia/";
 }
+
 function openDC() {
     window.open("https://discord.gg/u6W8VRSNjq", "_blank");
 }
+
 function openRangok() {
     window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
-}
-
-// Function to calculate time left until next like
-function calculateTimeLeft() {
-    var lastLikedTime = parseInt(localStorage.getItem('lastLikedTime')) || 0;
-    var currentTime = new Date().getTime();
-    var elapsedTime = currentTime - lastLikedTime;
-    var timeLeft = 12 * 60 * 60 * 1000 - elapsedTime; // 12 hours in milliseconds
-    return timeLeft > 0 ? timeLeft : 0;
-}
-
-// Function to format time in HH:MM:SS format
-function formatTime(milliseconds) {
-    var hours = Math.floor(milliseconds / (1000 * 60 * 60));
-    var minutes = Math.floor((milliseconds % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((milliseconds % (1000 * 60)) / 1000);
-    return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
 }
 </script>
 </body>
