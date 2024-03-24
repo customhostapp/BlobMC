@@ -144,6 +144,46 @@ function drop() {
     }
 }
 
+// Function to set initial drop count and check for color/title change
+function setInitialDropCount() {
+    var dropCount = localStorage.getItem("drop_count");
+    console.log("Drop count:", dropCount); // Log drop count to console
+    if (dropCount) {
+        var counterElement = document.getElementById("drop-counter");
+        counterElement.textContent = dropCount;
+        // Check if drop count is a multiple of 5
+        if (parseInt(dropCount) >= 5 && parseInt(dropCount) <= 9) {
+            var dropButton = document.querySelector('.drop-button');
+            console.log("Button color and title changed."); // Log color/title change to console
+            dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
+            dropButton.textContent = "<->"; // Change title to <->
+        }
+        // Check if drop count is between 10 and 14
+        else if (parseInt(dropCount) >= 10 && parseInt(dropCount) <= 14) {
+            var dropButton = document.querySelector('.drop-button');
+            console.log("Button color and title changed."); // Log color/title change to console
+            dropButton.style.backgroundColor = '#87CEFA'; // Change color to blue
+            dropButton.textContent = "[+]"; // Change title to [+]
+        }
+        // Check if drop count is between 15 and 20
+        else if (parseInt(dropCount) >= 15 && parseInt(dropCount) <= 20) {
+            var dropButton = document.querySelector('.drop-button');
+            console.log("Button color and title changed."); // Log color/title change to console
+            dropButton.style.backgroundColor = '#C380D0'; // Change color to purple
+            dropButton.textContent = "{<>}"; // Change title to {<>}
+        }
+        else {
+            var dropButton = document.querySelector('.drop-button');
+            console.log("Button color and title changed."); // Log color/title change to console
+            dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
+            dropButton.textContent = "(=)"; // Change title back to (=)
+        }
+    }
+}
+
+// Call the function to set initial drop count and check for color/title change
+setInitialDropCount();
+
 // Function to copy server IP
 function copyIP() {
     var serverIp = "195.228.230.105:25574";
