@@ -7,10 +7,14 @@
 <style>
 body {
     background-color: #333333; /* Dark Gray */
+    background-image: url('https://cdn.discordapp.com/attachments/1208705442759319582/1221337332767133696/Wallpaper3.png?ex=66123607&is=65ffc107&hm=091e713d4721b453fdb622044e0d7dcd15fb92abecaad815e5500651dbf29929&');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Align items vertically */
+    height: 100vh; /* Ensure the body takes up the full height of the viewport */
     margin: 0; /* Remove default margin */
 }
 
@@ -64,12 +68,6 @@ body {
     transform: scale(0.85); /* Scale down the button by 85% */
 }
 
-/* Style for the dark/white theme changer button */
-.theme-button {
-    background-color: #333333; /* Dark Gray */
-    border: 2px solid white;
-}
-
 /* Style for the black circle */
 .black-circle {
     width: 100px;
@@ -77,7 +75,7 @@ body {
     background-color: black;
     border-radius: 50%;
     position: absolute;
-    bottom: -50px;
+    bottom: 50px;
 }
 
 /* Style for the GIF */
@@ -85,7 +83,7 @@ body {
     width: 80px;
     height: 80px;
     position: absolute;
-    bottom: -30px;
+    bottom: 70px;
 }
 </style>
 </head>
@@ -109,9 +107,6 @@ body {
 
     <!-- Button to open dc page -->
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
-
-    <!-- Button to toggle dark/white theme -->
-    <button class="button theme-button" onclick="toggleTheme()">Téma</button>
 </div>
 
 <!-- Black circle for GIF -->
@@ -146,31 +141,4 @@ function openWebsite() {
     window.open("https://www.blobmc.hu", "_blank");
 }
 
-function openWebstore() {
-    window.open("https://blobmc-bolt.tebex.io", "_blank");
-}
-
-function openRangok() {
-    window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
-}
-
-function openGitHub() {
-    window.location.href = "https://veghlacuska.github.io/BlobMCMedia/";
-}
-
-function openDC() {
-    window.open("https://discord.gg/u6W8VRSNjq", "_blank");
-}
-
-function toggleTheme() {
-    var body = document.body;
-    if (body.classList.contains("dark-theme")) {
-        body.classList.remove("dark-theme");
-    } else {
-        body.classList.add("dark-theme");
-    }
-}
-</script>
-
-</body>
-</html>
+function openWebstore()
