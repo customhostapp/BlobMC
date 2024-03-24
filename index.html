@@ -52,6 +52,23 @@ body {
 .light-green-button {
     background-color: #90EE90; /* Light Green */
 }
+
+/* New styles for the circular brown button */
+.drop-button {
+    background-color: #8B4513; /* Brown */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    line-height: 80px; /* Center the text vertically */
+    font-size: 24px;
+}
+
+/* Counter styles */
+.counter {
+    color: white;
+    font-size: 24px;
+    margin-top: 20px; /* Add margin between button and counter */
+}
 </style>
 </head>
 <body>
@@ -73,8 +90,32 @@ body {
 
     <!-- Button to open dc page -->
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
+
+    <!-- Circular brown button for dropping -->
+    <button class="button drop-button" onclick="drop()">(=)</button>
+
+    <!-- Counter for drops -->
+    <div class="counter" id="drop-counter">0</div>
 </div>
 <script>
+// Function to increment drop counter and save to cookies
+function drop() {
+    var lastDropTime = localStorage.getItem("lastDropTime");
+    if (!lastDropTime || (new Date().getTime() - parseInt(lastDropTime)) >= (24 * 60 * 60 * 1000)) {
+        var counterElement = document.getElementById("drop-counter");
+        var currentCount = parseInt(counterElement.textContent);
+        currentCount++;
+        counterElement.textContent = currentCount;
+        // Save the current count to cookies
+        localStorage.setItem("drop_count", currentCount);
+        // Save the last drop time
+        localStorage.setItem("lastDropTime", new Date().getTime().toString());
+    } else {
+        alert("You can drop again tomorrow at 7:40 am CET.");
+    }
+}
+
+// Function to copy server IP
 function copyIP() {
     var serverIp = "195.228.230.105:25574";
   
@@ -95,21 +136,42 @@ function copyIP() {
     // Alert the copied text
     alert("BlobMC szerver IP másolva, illeszd be ahova akarod!");
 }
+
+// Function to open website
 function openWebsite() {
     window.open("https://www.blobmc.hu", "_blank");
 }
+
+// Function to open webstore
 function openWebstore() {
     window.open("https://blobmc-bolt.tebex.io", "_blank");
 }
+
+// Function to open GitHub page
 function openGitHub() {
     window.location.href = "https://veghlacuska.github.io/BlobMCMedia/";
 }
+
+// Function to open Discord server
 function openDC() {
     window.open("https://discord.gg/u6W8VRSNjq", "_blank");
 }
+
+// Function to open ranks
 function openRangok() {
     window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
 }
+
+// Function to set the initial drop count from cookies
+function setInitialDropCount() {
+    var dropCount = localStorage.getItem("drop_count");
+    if (dropCount) {
+        document.getElementById("drop-counter").textContent = dropCount;
+    }
+}
+
+// Call the function to set initial drop count
+setInitialDropCount();
 </script>
 </body>
 </html>
