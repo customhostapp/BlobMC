@@ -6,6 +6,7 @@
 <title>BlobMC Dashboard</title>
 <style>
 body {
+    background-color: #333333; /* Dark Gray */
     background-image: url('https://cdn.discordapp.com/attachments/1208705442759319582/1221337332767133696/Wallpaper3.png?ex=66123607&is=65ffc107&hm=091e713d4721b453fdb622044e0d7dcd15fb92abecaad815e5500651dbf29929&');
     background-size: cover;
     background-position: center;
@@ -76,6 +77,10 @@ body {
     border: 2px solid white;
 }
 
+.theme-button {
+    margin-top: 10px; /* Add margin between buttons */
+}
+
 </style>
 </head>
 <body>
@@ -100,7 +105,7 @@ body {
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
 
     <!-- Button to toggle dark/white theme -->
-    <button class="button dark-theme-button" onclick="toggleTheme()">Dark/White Theme</button>
+    <button class="button dark-theme-button theme-button" onclick="toggleTheme()">Téma</button>
 </div>
 
 <script>
@@ -153,4 +158,5 @@ function toggleTheme() {
 }
 </script>
 
-</body
+</body>
+</html>
