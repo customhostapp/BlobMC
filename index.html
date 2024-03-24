@@ -220,6 +220,7 @@ setInitialDropCount();
 
 // Function to set the initial drop count from cookies
 function setInitialDropCount() {
+    console.log("Executing setInitialDropCount function."); // Log function execution
     var dropCount = localStorage.getItem("drop_count");
     if (dropCount) {
         document.getElementById("drop-counter").textContent = dropCount;
