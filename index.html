@@ -111,7 +111,7 @@ function drop() {
         var currentCount = parseInt(counterElement.textContent);
         currentCount++;
         counterElement.textContent = currentCount;
-        // Save the current count to cookies
+        // Save the current count to localStorage
         localStorage.setItem("drop_count", currentCount);
         // Save the last drop time
         localStorage.setItem("lastDropTime", new Date().getTime().toString());
