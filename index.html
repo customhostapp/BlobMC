@@ -6,9 +6,10 @@
 <title>BlobMC Dashboard</title>
 <style>
 body {
-    background-color: #333333; /* Dark Gray */
     background-image: url('https://cdn.discordapp.com/attachments/1208705442759319582/1221337332767133696/Wallpaper3.png?ex=66123607&is=65ffc107&hm=091e713d4721b453fdb622044e0d7dcd15fb92abecaad815e5500651dbf29929&');
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +24,7 @@ body {
 }
 
 .button {
-    border: 2px solid transparent; /* Transparent border */
+    border: none;
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -65,20 +66,6 @@ body {
     transform: scale(0.85); /* Scale down the button by 85% */
 }
 
-/* Hover effect for buttons */
-.button:hover {
-    border-color: white; /* Change border color on hover */
-}
-
-.dark-theme-button {
-    background-color: black;
-    border: 2px solid white;
-}
-
-.theme-button {
-    margin-top: 10px; /* Add margin between buttons */
-}
-
 </style>
 </head>
 <body>
@@ -101,9 +88,6 @@ body {
 
     <!-- Button to open dc page -->
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
-
-    <!-- Button to toggle dark/white theme -->
-    <button class="button dark-theme-button theme-button" onclick="toggleTheme()">Téma</button>
 </div>
 
 <script>
@@ -148,17 +132,6 @@ function openDC() {
     window.open("https://discord.gg/u6W8VRSNjq", "_blank");
 }
 
-function toggleTheme() {
-    var buttons = document.querySelectorAll('.button');
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].classList.toggle('dark-theme-button');
-    }
-    if (document.body.style.backgroundColor === "") {
-        document.body.style.backgroundColor = "white"; // White background
-    } else {
-        document.body.style.backgroundColor = ""; // Remove background color
-    }
-}
 </script>
 
 </body>
