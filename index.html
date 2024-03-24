@@ -11,13 +11,16 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column; /* Align items vertically */
-    height: 100vh; /* Ensure the body takes up the full height of the viewport */
-    margin: 0; /* Remove default margin */
-    overflow-y: scroll; /* Enable vertical scrolling */
+    height: 100%;
+    margin: 0;
+    overflow: auto; /* Enable overflow scrolling */
 }
 
 .container {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .button-container {
