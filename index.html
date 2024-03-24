@@ -52,6 +52,18 @@ body {
 .light-green-button {
     background-color: #90EE90; /* Light Green */
 }
+
+/* Like button style */
+.like-button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+.like-button:hover {
+    color: red; /* Change color on hover */
+}
 </style>
 </head>
 <body>
@@ -73,8 +85,13 @@ body {
 
     <!-- Button to open dc page -->
     <button class="button dc-button" onclick="openDC()">Discord Szerver</button>
+
+    <!-- Like button -->
+    <button class="like-button" onclick="like()">❤</button>
+    <span id="like-counter">0</span>
 </div>
 <script>
+// Function to copy IP address
 function copyIP() {
     var serverIp = "195.228.230.105:25574";
   
@@ -95,20 +112,37 @@ function copyIP() {
     // Alert the copied text
     alert("BlobMC szerver IP másolva, illeszd be ahova akarod!");
 }
+
+// Function to open website
 function openWebsite() {
     window.open("https://www.blobmc.hu", "_blank");
 }
+
+// Function to open webstore
 function openWebstore() {
     window.open("https://blobmc-bolt.tebex.io", "_blank");
 }
+
+// Function to open GitHub page
 function openGitHub() {
     window.location.href = "https://veghlacuska.github.io/BlobMCMedia/";
 }
+
+// Function to open Discord server
 function openDC() {
     window.open("https://discord.gg/u6W8VRSNjq", "_blank");
 }
+
+// Function to open Rangok
 function openRangok() {
     window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
+}
+
+// Like button functionality
+var likeCounter = 0;
+function like() {
+    likeCounter++;
+    document.getElementById("like-counter").innerText = likeCounter;
 }
 </script>
 </body>
