@@ -106,44 +106,34 @@ body {
 // Function to increment drop counter and save to cookies
 function drop() {
     var lastDropTime = localStorage.getItem("lastDropTime");
-    if (!lastDropTime || (new Date().getTime() - parseInt(lastDropTime)) >= (24 * 60 * 60 * 1000)) {
-        var counterElement = document.getElementById("drop-counter");
-        var currentCount = parseInt(counterElement.textContent);
-        currentCount++;
-        counterElement.textContent = currentCount;
-        // Save the current count to localStorage
-        localStorage.setItem("drop_count", currentCount);
-        // Save the last drop time
-        localStorage.setItem("lastDropTime", new Date().getTime().toString());
+    var currentTime = new Date().getTime();
+    var sevenFortyToday = new Date();
+    sevenFortyToday.setHours(7);
+    sevenFortyToday.setMinutes(40);
+    sevenFortyToday.setSeconds(0);
+    sevenFortyToday.setMilliseconds(0);
 
-        // Check if current count is between 5 and 9
-        if (currentCount >= 5 && currentCount <= 9) {
-            var dropButton = document.querySelector('.drop-button');
-            dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
-            dropButton.textContent = "<->"; // Change title to <->
-        } 
-        // Check if current count is between 10 and 14
-        else if (currentCount >= 10 && currentCount <= 14) {
-            var dropButton = document.querySelector('.drop-button');
-            dropButton.style.backgroundColor = '#87CEFA'; // Change color to blue
-            dropButton.textContent = "[+]"; // Change title to [+]
-        }
-        // Check if current count is between 15 and 20
-        else if (currentCount >= 15 && currentCount <= 20) {
-            var dropButton = document.querySelector('.drop-button');
-            dropButton.style.backgroundColor = '#C380D0'; // Change color to purple
-            dropButton.textContent = "{<>}"; // Change title to {<>}
-        } 
-        else {
-            var dropButton = document.querySelector('.drop-button');
-            dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
-            dropButton.textContent = "(=)"; // Change title back to (=)
+    if (!lastDropTime || currentTime >= sevenFortyToday.getTime()) {
+        // Check if the last drop was before today's 7:40 AM
+        if (!lastDropTime || new Date(parseInt(lastDropTime)).getTime() < sevenFortyToday.getTime()) {
+            var counterElement = document.getElementById("drop-counter");
+            var currentCount = parseInt(counterElement.textContent);
+            currentCount++;
+            counterElement.textContent = currentCount;
+            // Save the current count to localStorage
+            localStorage.setItem("drop_count", currentCount);
+            // Save the last drop time
+            localStorage.setItem("lastDropTime", currentTime.toString());
+
+            // Update the drop button appearance based on the current count
+            updateDropButtonAppearance(currentCount);
+        } else {
+            alert("You can only drop once a day after 7:40 AM.");
         }
     } else {
-        alert("Holnap újra Drop-olhatsz 7:40-kor!.");
+        alert("You can drop again tomorrow after 7:40 AM.");
     }
 }
-
 // Function to set initial drop count and check for color/title change
 function setInitialDropCount() {
     var dropCount = localStorage.getItem("drop_count");
@@ -183,6 +173,24 @@ function setInitialDropCount() {
 
 // Call the function to set initial drop count and check for color/title change
 setInitialDropCount();
+
+// Function to update the drop button appearance based on the current drop count
+function updateDropButtonAppearance(currentCount) {
+    var dropButton = document.querySelector('.drop-button');
+    if (currentCount >= 5 && currentCount <= 9) {
+        dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
+        dropButton.textContent = "<->"; // Change title to <->
+    } else if (currentCount >= 10 && currentCount <= 14) {
+        dropButton.style.backgroundColor = '#87CEFA'; // Change color to blue
+        dropButton.textContent = "[+]"; // Change title to [+]
+    } else if (currentCount >= 15 && currentCount <= 20) {
+        dropButton.style.backgroundColor = '#C380D0'; // Change color to purple
+        dropButton.textContent = "{<>}"; // Change title to {<>}
+    } else {
+        dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
+        dropButton.textContent = "(=)"; // Change title back to (=)
+    }
+}
 
 // Function to copy server IP
 function copyIP() {
