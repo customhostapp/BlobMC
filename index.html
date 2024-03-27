@@ -74,9 +74,9 @@ body {
     margin-top: 16px; /* Add margin between button and counter */
 }
 
-/* Style for the -drop button */
-.minus-drop-button {
-    background-color: #CC3116; /* Red */
+/* New style for the force drop button */
+.force-drop-button {
+    background-color: #C7A02F; /* Gold */
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -84,12 +84,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 16px; /* Adjust the margin as needed */
+    margin-top: 10px; /* Adjust the margin as needed */
 }
 
-/* New style for the force drop button */
-.force-drop-button {
-    background-color: #C7A02F; /* Gold */
+/* Style for the -drop button */
+.minus-drop-button {
+    background-color: #CC3116; /* Red */
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -129,11 +129,11 @@ body {
     <!-- Counter for drops -->
     <div class="counter" id="drop-counter">0</div>
 
+    <!-- Button to to force drop -->
+    <button class="button force-drop-button" onclick="forceDrop()">Prémium Drop</button>
+
     <!-- Button to remove a drop -->
     <button class="button minus-drop-button" onclick="minusDrop()">-Drop</button>
-
-    /* Add the force drop button below the drop button */
-    <button class="button force-drop-button" onclick="forceDrop()">Prémium Drop</button>
 </div>
 <script>
 // Function to increment drop counter and save to cookies
