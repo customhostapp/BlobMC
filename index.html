@@ -72,30 +72,6 @@ body {
     color: white;
     font-size: 24px;
     margin-top: 16px; /* Add margin between button and counter */
-
-/* Prem style */
-.prem-button {
-    background-color: #FFD700; /* Gold */
-}
-
-/* Style for the green circle */
-.green-circle {
-    background-color: green;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-top: 10px;
-}
-
-/* Style for the gold circle */
-.gold-circle {
-    background-color: gold;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-top: 10px;
-}
-
 }
 </style>
 </head>
@@ -125,49 +101,37 @@ body {
 
     <!-- Counter for drops -->
     <div class="counter" id="drop-counter">0</div>
-
-    <!-- Make Prem button -->
-    <button class="button prem-button" onclick="makePrem()">Prémium</button>
-
-    <!-- Div for the green circle -->
-    <div class="green-circle"></div>
-
 </div>
 <script>
 // Function to increment drop counter and save to cookies
-// Updated drop function to consider premium status
 function drop() {
     var lastDropTime = localStorage.getItem("lastDropTime");
-    var dropCount = localStorage.getItem("drop_count");
-    
-    // Check if the user is premium and has already dropped twice
-    if (isPremium && dropCount >= 2) {
-        alert("You have already dropped twice today as a premium user.");
-        return;
-    }
+    var currentTime = new Date().getTime();
+    var sevenFortyToday = new Date();
+    sevenFortyToday.setHours(7);
+    sevenFortyToday.setMinutes(40);
+    sevenFortyToday.setSeconds(0);
+    sevenFortyToday.setMilliseconds(0);
 
-    // Logic to check if the user can drop
-    if (!lastDropTime || (new Date().getTime() - parseInt(lastDropTime)) >= (24 * 60 * 60 * 1000)) {
-        var counterElement = document.getElementById("drop-counter");
-        var currentCount = parseInt(counterElement.textContent);
-        currentCount++;
-        counterElement.textContent = currentCount;
-        // Save the current count to cookies
-        localStorage.setItem("drop_count", currentCount);
-        // Save the last drop time
-        localStorage.setItem("lastDropTime", new Date().getTime().toString());
+    if (!lastDropTime || currentTime >= sevenFortyToday.getTime()) {
+        // Check if the last drop was before today's 7:40 AM
+        if (!lastDropTime || new Date(parseInt(lastDropTime)).getTime() < sevenFortyToday.getTime()) {
+            var counterElement = document.getElementById("drop-counter");
+            var currentCount = parseInt(counterElement.textContent);
+            currentCount++;
+            counterElement.textContent = currentCount;
+            // Save the current count to localStorage
+            localStorage.setItem("drop_count", currentCount);
+            // Save the last drop time
+            localStorage.setItem("lastDropTime", currentTime.toString());
 
-        // Check if the user is premium and has already dropped once today
-        if (isPremium && currentCount > 0 && currentCount % 2 === 0) {
-            alert("You've already dropped twice today as a Premium user.");
-        }
-
-        // Regular user can drop once a day
-        else if (!isPremium && currentCount > 0) {
-            alert("You've already dropped today. Come back tomorrow!");
+            // Update the drop button appearance based on the current count
+            updateDropButtonAppearance(currentCount);
+        } else {
+            alert("Egy nap csak egyszer Drop-olhatsz! Próbáld újra 7:40-kor!");
         }
     } else {
-        alert("You can drop again tomorrow at 7:40 AM CET.");
+        alert("Egy nap csak egyszer Drop-olhatsz! Próbáld újra 7:40-kor!");
     }
 }
 // Function to set initial drop count and check for color/title change
@@ -178,20 +142,35 @@ function setInitialDropCount() {
         var counterElement = document.getElementById("drop-counter");
         counterElement.textContent = dropCount;
         // Check if drop count is a multiple of 5
-        if (parseInt(dropCount) % 5 === 0) {
+        if (parseInt(dropCount) >= 5 && parseInt(dropCount) <= 9) {
             var dropButton = document.querySelector('.drop-button');
             console.log("Button color and title changed."); // Log color/title change to console
             dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
             dropButton.textContent = "<->"; // Change title to <->
         }
-    }
-
-    // Check and set premium status
-    var isPremium = localStorage.getItem("isPremium");
-    if (isPremium) {
-        // Update UI to indicate premium status (if needed)
+        // Check if drop count is between 10 and 14
+        else if (parseInt(dropCount) >= 10 && parseInt(dropCount) <= 14) {
+            var dropButton = document.querySelector('.drop-button');
+            console.log("Button color and title changed."); // Log color/title change to console
+            dropButton.style.backgroundColor = '#87CEFA'; // Change color to blue
+            dropButton.textContent = "[+]"; // Change title to [+]
+        }
+        // Check if drop count is between 15 and 20
+        else if (parseInt(dropCount) >= 15 && parseInt(dropCount) <= 20) {
+            var dropButton = document.querySelector('.drop-button');
+            console.log("Button color and title changed."); // Log color/title change to console
+            dropButton.style.backgroundColor = '#C380D0'; // Change color to purple
+            dropButton.textContent = "{<>}"; // Change title to {<>}
+        }
+        else {
+            var dropButton = document.querySelector('.drop-button');
+            console.log("Button color and title changed."); // Log color/title change to console
+            dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
+            dropButton.textContent = "(=)"; // Change title back to (=)
+        }
     }
 }
+
 // Call the function to set initial drop count and check for color/title change
 setInitialDropCount();
 
@@ -211,18 +190,6 @@ function updateDropButtonAppearance(currentCount) {
         dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
         dropButton.textContent = "(=)"; // Change title back to (=)
     }
-}
-
-// Function to make user premium
-function makePrem() {
-    localStorage.setItem("isPremUser", "true");
-    alert("Prem felhasználó lettél!");
-}
-
-function becomePremium() {
-    // Set premium status to true
-    localStorage.setItem("isPremium", true);
-    alert("Congratulations! You are now a Premium user.");
 }
 
 // Function to copy server IP
