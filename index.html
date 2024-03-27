@@ -162,7 +162,6 @@ body {
 <script>
 
 // Function to increment drop counter and save to cookies
-// Function to increment drop counter and save to cookies
 function drop() {
     var lastDropTime = localStorage.getItem("lastDropTime");
     var currentTime = new Date().getTime();
@@ -222,40 +221,44 @@ function minusDrop() {
     }
 }
 
-// Function to update the drop button appearance based on the current drop count
-function updateDropButtonAppearance(currentCount) {
-    var dropButton = document.querySelector('.drop-button');
-
-    // Adjust color and title based on the current count
-    if (currentCount >= 5 && currentCount <= 9) {
-        dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
-        dropButton.textContent = "<->"; // Change title to <->
-    } else if (currentCount >= 10 && currentCount <= 14) {
-        dropButton.style.backgroundColor = '#87CEFA'; // Change color to blue
-        dropButton.textContent = "[+]"; // Change title to [+]
-    } else if (currentCount >= 15 && currentCount <= 19) {
-        dropButton.style.backgroundColor = '#C380D0'; // Change color to purple
-        dropButton.textContent = "{<>}"; // Change title to {<>}
-     } else if (currentCount >= 20) {
-        dropButton.style.backgroundColor = '#430C85'; // Change color to purple
-        dropButton.textContent = "/=/"; // Change title to /=/
-    } else {
-        dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
-        dropButton.textContent = "(=)"; // Change title back to (=)
-    }
-
-    // Check if the drop count reached 5, 10, 15, or 20 and display alert messages
-    if (currentCount === 5) {
-        alert("Congratulations! You've reached drop level 5!");
-    } else if (currentCount === 10) {
-        alert("Wow! You're now at drop level 10!");
-    } else if (currentCount === 15) {
-        alert("Amazing! You've reached drop level 15!");
-    } else if (currentCount === 20) {
-        alert("Incredible! You've achieved drop level 20!");
+// Function to set initial drop count and check for color/title change
+function setInitialDropCount() {
+    var dropCount = localStorage.getItem("drop_count");
+    console.log("Drop count:", dropCount); // Log drop count to console
+    if (dropCount) {
+        var counterElement = document.getElementById("drop-counter");
+        counterElement.textContent = dropCount;
+        // Check if drop count is a multiple of 5
+        if (parseInt(dropCount) >= 5 && parseInt(dropCount) <= 9) {
+            var dropButton = document.querySelector('.drop-button');
+            console.log("Button color and title changed."); // Log color/title change to console
+            dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
+            dropButton.textContent = "<->"; // Change title to <->
+        }
+        // Check if drop count is between 10 and 14
+        else if (parseInt(dropCount) >= 10 && parseInt(dropCount) <= 14) {
+            var dropButton = document.querySelector('.drop-button');
+            console.log("Button color and title changed."); // Log color/title change to console
+            dropButton.style.backgroundColor = '#87CEFA'; // Change color to blue
+            dropButton.textContent = "[+]"; // Change title to [+]
+        }
+        // Check if drop count is between 15 and 20
+        else if (parseInt(dropCount) >= 15 && parseInt(dropCount) <= 20) {
+            var dropButton = document.querySelector('.drop-button');
+            console.log("Button color and title changed."); // Log color/title change to console
+            dropButton.style.backgroundColor = '#C380D0'; // Change color to purple
+            dropButton.textContent = "{<>}"; // Change title to {<>}
+        } else {
+            var dropButton = document.querySelector('.drop-button');
+            console.log("Button color and title changed."); // Log color/title change to console
+            dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
+            dropButton.textContent = "(=)"; // Change title back to (=)
+        }
     }
 }
-updateDropAppearance();
+
+// Call the function to set initial drop count and check for color/title change
+setInitialDropCount();
 
 // Function to update the drop button appearance based on the current drop count
 function updateDropButtonAppearance(currentCount) {
