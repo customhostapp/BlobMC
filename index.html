@@ -59,7 +59,7 @@ body {
     background-color: #98734F; /* Brown */
     border-radius: 50%;
     width: 100px; /* Increase width to accommodate the text */
-    height: 80px;
+    height: 100px;
     font-size: 18px; /* Adjust font size as needed */
     display: flex;
     justify-content: center;
@@ -211,11 +211,6 @@ setInitialDropCount();
 // Function to update the drop button appearance based on the current drop count
 function updateDropButtonAppearance(currentCount) {
     var dropButton = document.querySelector('.drop-button');
-    if (currentCount >= 5 && currentCount <= 9) {
-        dropButton.style.fontSize = '16px'; // Set smaller font size for counts between 5 and 9
-    } else {
-        dropButton.style.fontSize = '24px'; // Set default font size for other counts
-    }
 
     // Adjust color and title based on the current count
     if (currentCount >= 5 && currentCount <= 9) {
