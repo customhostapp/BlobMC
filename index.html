@@ -374,7 +374,7 @@ function getUserIP() {
     fetch('https://api.ipify.org?format=json')
     .then(response => response.json())
     .then(data => {
-        document.getElementById('user-ip').textContent = "Your IP Address: " + data.ip;
+        document.getElementById('user-ip').textContent = data.ip;
     })
     .catch(error => {
         console.error('Error fetching IP address:', error);
