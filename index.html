@@ -73,6 +73,19 @@ body {
     font-size: 24px;
     margin-top: 16px; /* Add margin between button and counter */
 }
+
+/* Style for the force drop button */
+.force-drop-button {
+   background-color: #C7A02F; /* Gold */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px; /* Adjust the margin as needed */
+}
 </style>
 </head>
 <body>
@@ -101,6 +114,9 @@ body {
 
     <!-- Counter for drops -->
     <div class="counter" id="drop-counter">0</div>
+
+    <!-- Button to force a drop -->
+    <button class="button force-drop-button" onclick="forceDrop()">Prémium Drop</button>
 </div>
 <script>
 // Function to increment drop counter and save to cookies
@@ -190,6 +206,20 @@ function updateDropButtonAppearance(currentCount) {
         dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
         dropButton.textContent = "(=)"; // Change title back to (=)
     }
+}
+
+// Function to force a drop
+function forceDrop() {
+    var counterElement = document.getElementById("drop-counter");
+    var currentCount = parseInt(counterElement.textContent);
+    currentCount++;
+    counterElement.textContent = currentCount;
+    // Save the current count to cookies
+    localStorage.setItem("drop_count", currentCount);
+    // Change the button color and title
+    var dropButton = document.querySelector('.drop-button');
+    dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
+    dropButton.textContent = "(=)"; // Change title back to (=)
 }
 
 // Function to copy server IP
