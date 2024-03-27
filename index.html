@@ -115,27 +115,6 @@ body {
     margin-top: 10px; /* Adjust the margin as needed */
 }
 
-.prem::before,
-.prem::after {
-    content: '';
-    position: absolute;
-    width: 50%;
-    height: 2px; /* Adjust line thickness as needed */
-    background-color: red;
-}
-
-.prem::before {
-    top: 0;
-    left: 0;
-    transform: translate(-100%, -50%);
-}
-
-.prem::after {
-    bottom: 0;
-    right: 0;
-    transform: translate(100%, 50%);
-}
-
 </style>
 </head>
 <body>
@@ -406,12 +385,6 @@ function getUserIP() {
 }
 // Call the function to get and display the user's IP address
 getUserIP();
-
-if (isPremUser) {
-    textContainer.classList.add('prem');
-} else {
-    textContainer.classList.remove('prem');
-}
 
 </script>
 </body>
