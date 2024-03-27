@@ -54,17 +54,18 @@ body {
     background-color: #90EE90; /* Light Green */
 }
 
-/* New styles for the circular brown button */
+/* Drop button */
 .drop-button {
     background-color: #98734F; /* Brown */
     border-radius: 50%;
     width: 80px;
     height: 80px;
-    font-size: 24px;
+    font-size: 20px; /* Adjust font size */
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 140px; /* Adjust the margin as needed */
+    padding: 5px; /* Adjust padding */
 }
 
 /* Counter styles */
@@ -117,6 +118,9 @@ body {
 
     <!-- Button to force a drop -->
     <button class="button force-drop-button" onclick="forceDrop()">Prémium Drop</button>
+
+    <!-- Button to decrement drop count -->
+    <button class="button drop-button" onclick="removeDrop()">-Drop</button>
 </div>
 <script>
 // Function to increment drop counter and save to cookies
@@ -220,6 +224,20 @@ function forceDrop() {
     var dropButton = document.querySelector('.drop-button');
     dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
     dropButton.textContent = "(=)"; // Change title back to (=)
+}
+
+// Function to decrement drop count and update cookies
+function removeDrop() {
+    var counterElement = document.getElementById("drop-counter");
+    var currentCount = parseInt(counterElement.textContent);
+    if (currentCount > 0) {
+        currentCount--;
+        counterElement.textContent = currentCount;
+        // Save the current count to cookies
+        localStorage.setItem("drop_count", currentCount);
+        // Update the drop button appearance based on the current count
+        updateDropButtonAppearance(currentCount);
+    }
 }
 
 // Function to copy server IP
