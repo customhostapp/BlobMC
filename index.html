@@ -327,9 +327,11 @@ function getIPAddress() {
 async function checkPremStatus() {
     try {
         const ipAddress = await getIPAddress();
-        const premUsers = ['145.236.61.179']; // Add your Prem users' IP addresses here
+        const premUsers = ['192.168.1.100', '192.168.1.101']; // Add your Prem users' IP addresses here
         if (premUsers.includes(ipAddress)) {
             showButtons(); // Call function to show the buttons for Prem users
+        } else {
+            hideButtons(); // Call function to hide the buttons for non-Prem users
         }
     } catch (error) {
         console.error('Error:', error);
@@ -341,6 +343,13 @@ function showButtons() {
     // Show the buttons for drop and force drop
     document.querySelector('.minus-drop-button').style.display = 'block';
     document.querySelector('.force-drop-button').style.display = 'block';
+}
+
+// Function to hide the buttons for non-Prem users
+function hideButtons() {
+    // Hide the buttons for drop and force drop
+    document.querySelector('.minus-drop-button').style.display = 'none';
+    document.querySelector('.force-drop-button').style.display = 'none';
 }
 
 // Call the function to check if the user is a Prem user
