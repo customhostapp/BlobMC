@@ -54,18 +54,17 @@ body {
     background-color: #90EE90; /* Light Green */
 }
 
-/* Drop button */
+/* New styles for the circular brown button */
 .drop-button {
     background-color: #98734F; /* Brown */
     border-radius: 50%;
     width: 80px;
     height: 80px;
-    font-size: 20px; /* Adjust font size */
+    font-size: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 140px; /* Adjust the margin as needed */
-    padding: 5px; /* Adjust padding */
 }
 
 /* Counter styles */
@@ -75,9 +74,9 @@ body {
     margin-top: 16px; /* Add margin between button and counter */
 }
 
-/* Style for the force drop button */
-.force-drop-button {
-   background-color: #C7A02F; /* Gold */
+/* Style for the -drop button */
+.minus-drop-button {
+    background-color: #CC3116; /* Red */
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -85,13 +84,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 200px; /* Adjust the margin as needed */
-}
-
-/* Style for the -drop button */
-.minus-drop-button {
-   background-color: #CC3116; /* Red */
-   /* Adjust other styles as needed */
+    margin-top: 16px; /* Adjust the margin as needed */
 }
 </style>
 </head>
@@ -122,15 +115,10 @@ body {
     <!-- Counter for drops -->
     <div class="counter" id="drop-counter">0</div>
 
-    <!-- Button to force a drop -->
-    <button class="button force-drop-button" onclick="forceDrop()">Prémium Drop</button>
-
-    <!-- Button to decrement drop count -->
-    <button class="button drop-button red-button" onclick="removeDrop()">-Drop</button>
-
+    <!-- Button to remove a drop -->
+    <button class="button minus-drop-button" onclick="minusDrop()">-Drop</button>
 </div>
 <script>
-// Function to increment drop counter and save to cookies
 // Function to increment drop counter and save to cookies
 function drop() {
     var lastDropTime = localStorage.getItem("lastDropTime");
@@ -161,9 +149,6 @@ function drop() {
     } else {
         alert("Egy nap csak egyszer Drop-olhatsz! Próbáld újra 7:40-kor!");
     }
-
-    // Update the drop button appearance after dropping
-    updateDropButtonAppearance(parseInt(document.getElementById("drop-counter").textContent));
 }
 // Function to set initial drop count and check for color/title change
 function setInitialDropCount() {
@@ -192,8 +177,7 @@ function setInitialDropCount() {
             console.log("Button color and title changed."); // Log color/title change to console
             dropButton.style.backgroundColor = '#C380D0'; // Change color to purple
             dropButton.textContent = "{<>}"; // Change title to {<>}
-        }
-        else {
+        } else {
             var dropButton = document.querySelector('.drop-button');
             console.log("Button color and title changed."); // Log color/title change to console
             dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
@@ -235,18 +219,6 @@ function forceDrop() {
     var dropButton = document.querySelector('.drop-button');
     dropButton.style.backgroundColor = '#98734F'; // Change color back to brown
     dropButton.textContent = "(=)"; // Change title back to (=)
-}
-
-// Function to decrement drop counter and save to cookies
-function minusDrop() {
-    var counterElement = document.getElementById("drop-counter");
-    var currentCount = parseInt(counterElement.textContent);
-    if (currentCount > 0) {
-        currentCount--;
-        counterElement.textContent = currentCount;
-        // Save the current count to localStorage
-        localStorage.setItem("drop_count", currentCount);
-    }
 }
 
 // Function to copy server IP
@@ -294,6 +266,20 @@ function openDC() {
 // Function to open ranks
 function openRangok() {
     window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
+}
+
+// Function to remove a drop
+function minusDrop() {
+    var counterElement = document.getElementById("drop-counter");
+    var currentCount = parseInt(counterElement.textContent);
+    if (currentCount > 0) {
+        currentCount--;
+        counterElement.textContent = currentCount;
+        // Save the current count to localStorage
+        localStorage.setItem("drop_count", currentCount);
+        // Update the drop button appearance based on the current count
+        updateDropButtonAppearance(currentCount);
+    }
 }
 </script>
 </body>
