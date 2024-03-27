@@ -195,24 +195,34 @@ function drop() {
     }
 }
 
-// Function to force a drop
 function forceDrop() {
     var currentTime = new Date();
     var currentHour = currentTime.getHours();
-    
-    // Check if the current time is after 6:00 AM and before 7:40 AM
-    if (currentHour >= 6 && currentHour < 7) {
-        var counterElement = document.getElementById("drop-counter");
-        var currentCount = parseInt(counterElement.textContent);
-        currentCount++; // Increment drop count by 1
-        counterElement.textContent = currentCount;
-        // Save the current count to localStorage
-        localStorage.setItem("drop_count", currentCount);
-        // Update the drop button appearance based on the current count
-        updateDropButtonAppearance(currentCount);
+
+    // Check if the current hour is between 6:00 and 18:00
+    if (currentHour >= 6 && currentHour < 18) {
+        var lastPremDropTime = localStorage.getItem("lastPremDropTime");
+        var currentDate = new Date().toLocaleDateString();
+        var storedDate = new Date(parseInt(lastPremDropTime)).toLocaleDateString();
+
+        // Check if the last prem drop was not today
+        if (!lastPremDropTime || currentDate !== storedDate) {
+            var counterElement = document.getElementById("drop-counter");
+            var currentCount = parseInt(counterElement.textContent);
+            currentCount++;
+            counterElement.textContent = currentCount;
+            // Save the current count to localStorage
+            localStorage.setItem("drop_count", currentCount);
+            // Save the last prem drop time
+            localStorage.setItem("lastPremDropTime", currentTime.getTime().toString());
+
+            // Update the drop button appearance based on the current count
+            updateDropButtonAppearance(currentCount);
+        } else {
+            alert("A Prémium Drop funkció egyszer naponta használható, 6:00 és 18:00 között!");
+        }
     } else {
-        // Display a message if the current time is not within the allowed window
-        alert("You can only use the Force Drop button between 6:00 AM and 7:40 AM.");
+        alert("A Prémium Drop funkció csak 6:00 és 18:00 között érhető el!");
     }
 }
 
