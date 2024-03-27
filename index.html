@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@ body {
     margin: 0; /* Remove default margin */
     margin-bottom: 0; /* Add this line to remove bottom margin */
 }
+
 .container {
     display: flex;
     flex-direction: column;
@@ -22,6 +24,7 @@ body {
     height: 100%; /* Set container height to 100% of viewport */
     overflow-y: auto; /* Enable vertical scrolling */
 }
+
 .button {
     border: none;
     color: white;
@@ -34,6 +37,7 @@ body {
     cursor: pointer;
     border-radius: 10px;
 }
+
 .copy-button {
     background-color: #CC3116; /* Red */
 }
@@ -74,35 +78,10 @@ body {
     margin-top: 16px; /* Add margin between button and counter */
 }
 
-/* New style for the force drop button */
-.force-drop-button {
-    background-color: #C7A02F; /* Gold */
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 300px; /* Adjust the margin as needed */
-}
-
-/* Style for the -drop button */
-.minus-drop-button {
-    background-color: #CC3116; /* Red */
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px; /* Adjust the margin as needed */
-}
-
 </style>
 </head>
 <body>
+
 <div class="container">
 
     <!-- Button to trigger copying -->
@@ -129,13 +108,10 @@ body {
     <!-- Counter for drops -->
     <div class="counter" id="drop-counter">0</div>
 
-    <!-- Button to to force drop -->
-    <button class="button force-drop-button" onclick="forceDrop()">Prémium Drop</button>
-
-    <!-- Button to remove a drop -->
-    <button class="button minus-drop-button" onclick="minusDrop()">-Drop</button>
 </div>
+
 <script>
+
 // Function to increment drop counter and save to cookies
 function drop() {
     var lastDropTime = localStorage.getItem("lastDropTime");
@@ -169,6 +145,7 @@ function drop() {
         updateDropButtonAppearance(currentCount);
     }
 }
+
 // Function to set initial drop count and check for color/title change
 function setInitialDropCount() {
     var dropCount = localStorage.getItem("drop_count");
@@ -231,18 +208,6 @@ function updateDropButtonAppearance(currentCount) {
     }
 }
 
-// Function to force a drop
-function forceDrop() {
-    var counterElement = document.getElementById("drop-counter");
-    var currentCount = parseInt(counterElement.textContent);
-    currentCount++;
-    counterElement.textContent = currentCount;
-    // Save the current count to cookies
-    localStorage.setItem("drop_count", currentCount);
-    // Update the drop button appearance based on the current count
-    updateDropButtonAppearance(currentCount);
-}
-
 // Function to copy server IP
 function copyIP() {
     var serverIp = "195.228.230.105:25574";
@@ -288,20 +253,6 @@ function openDC() {
 // Function to open ranks
 function openRangok() {
     window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
-}
-
-// Function to remove a drop
-function minusDrop() {
-    var counterElement = document.getElementById("drop-counter");
-    var currentCount = parseInt(counterElement.textContent);
-    if (currentCount > 0) {
-        currentCount--;
-        counterElement.textContent = currentCount;
-        // Save the current count to localStorage
-        localStorage.setItem("drop_count", currentCount);
-        // Update the drop button appearance based on the current count
-        updateDropButtonAppearance(currentCount);
-    }
 }
 </script>
 </body>
