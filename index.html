@@ -212,7 +212,7 @@ setInitialDropCount();
 function updateDropButtonAppearance(currentCount) {
     var dropButton = document.querySelector('.drop-button');
     if (currentCount >= 5 && currentCount <= 9) {
-        dropButton.style.fontSize = '20px'; // Set smaller font size for counts between 5 and 9
+        dropButton.style.fontSize = '16px'; // Set smaller font size for counts between 5 and 9
     } else {
         dropButton.style.fontSize = '24px'; // Set default font size for other counts
     }
@@ -227,7 +227,7 @@ function updateDropButtonAppearance(currentCount) {
     } else if (currentCount >= 15 && currentCount <= 19) {
         dropButton.style.backgroundColor = '#C380D0'; // Change color to purple
         dropButton.textContent = "{<>}"; // Change title to {<>}
-     } else if (currentCount >= 20 && currentCount <= 24) {
+     } else if (currentCount >= 20) {
         dropButton.style.backgroundColor = '#430C85'; // Change color to purple
         dropButton.textContent = "/=/"; // Change title to /=/
     } else {
