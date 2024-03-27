@@ -78,6 +78,32 @@ body {
     margin-top: 16px; /* Add margin between button and counter */
 }
 
+/* New style for the force drop button */
+.force-drop-button {
+    background-color: #C7A02F; /* Gold */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px; /* Adjust the margin as needed */
+}
+
+/* Style for the -drop button */
+.minus-drop-button {
+    background-color: #CC3116; /* Red */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px; /* Adjust the margin as needed */
+}
+
 </style>
 </head>
 <body>
@@ -107,6 +133,12 @@ body {
 
     <!-- Counter for drops -->
     <div class="counter" id="drop-counter">0</div>
+
+    <!-- Button to force a drop -->
+    <button class="button force-drop-button" onclick="forceDrop()">Prémium Drop</button>
+
+    <!-- Button to remove a drop -->
+    <button class="button minus-drop-button" onclick="minusDrop()">-Drop</button>
 
 </div>
 
@@ -142,6 +174,32 @@ function drop() {
         }
     } else {
         alert("Egy nap csak egyszer Drop-olhatsz! Próbáld újra 7:40-kor!");
+        updateDropButtonAppearance(currentCount);
+    }
+}
+
+// Function to force a drop
+function forceDrop() {
+    var counterElement = document.getElementById("drop-counter");
+    var currentCount = parseInt(counterElement.textContent);
+    currentCount++;
+    counterElement.textContent = currentCount;
+    // Save the current count to cookies
+    localStorage.setItem("drop_count", currentCount);
+    // Update the drop button appearance based on the current count
+    updateDropButtonAppearance(currentCount);
+}
+
+// Function to remove a drop
+function minusDrop() {
+    var counterElement = document.getElementById("drop-counter");
+    var currentCount = parseInt(counterElement.textContent);
+    if (currentCount > 0) {
+        currentCount--;
+        counterElement.textContent = currentCount;
+        // Save the current count to localStorage
+        localStorage.setItem("drop_count", currentCount);
+        // Update the drop button appearance based on the current count
         updateDropButtonAppearance(currentCount);
     }
 }
@@ -254,6 +312,39 @@ function openDC() {
 function openRangok() {
     window.open("https://blobmc-bolt.tebex.io/category/2602949", "_blank");
 }
+
+// Function to get the IP address of the user
+function getIPAddress() {
+    return new Promise((resolve, reject) => {
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => resolve(data.ip))
+            .catch(error => reject(error));
+    });
+}
+
+// Function to check if the user is a Prem user
+async function checkPremStatus() {
+    try {
+        const ipAddress = await getIPAddress();
+        const premUsers = ['145.236.61.179']; // Add your Prem users' IP addresses here
+        if (premUsers.includes(ipAddress)) {
+            showButtons(); // Call function to show the buttons for Prem users
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// Function to show the buttons for Prem users
+function showButtons() {
+    // Show the buttons for drop and force drop
+    document.querySelector('.minus-drop-button').style.display = 'block';
+    document.querySelector('.force-drop-button').style.display = 'block';
+}
+
+// Call the function to check if the user is a Prem user
+checkPremStatus();
 </script>
 </body>
 </html>
