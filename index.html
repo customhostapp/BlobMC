@@ -162,6 +162,7 @@ body {
 <script>
 
 // Function to increment drop counter and save to cookies
+// Function to increment drop counter and save to cookies
 function drop() {
     var lastDropTime = localStorage.getItem("lastDropTime");
     var currentTime = new Date().getTime();
@@ -182,6 +183,17 @@ function drop() {
             localStorage.setItem("drop_count", currentCount);
             // Save the last drop time
             localStorage.setItem("lastDropTime", currentTime.toString());
+
+            // Check if the drop count reached 5, 10, 15, or 20 and display alert messages
+            if (currentCount === 5) {
+                alert("Szintet léptél: Zsoldos");
+            } else if (currentCount === 10) {
+                alert("Szintet léptél: Kristály");
+            } else if (currentCount === 15) {
+                alert("Szintet léptél: Szakura");
+            } else if (currentCount === 20) {
+                alert("Szintet léptél: Lunár");
+            }
 
             // Update the drop button appearance based on the current count
             updateDropButtonAppearance(currentCount);
