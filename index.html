@@ -25,6 +25,17 @@ body {
     overflow-y: auto; /* Enable vertical scrolling */
 }
 
+.text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F7CD7A; /* Light Orange */
+    border-radius: 50%;
+    width: fit-content;
+    padding: 30px; /* Adjust padding as needed */
+    margin-top: 50px;
+}
+
 .button {
     border: none;
     color: white;
@@ -139,6 +150,12 @@ body {
 
     <!-- Button to remove a drop -->
     <button class="button minus-drop-button" onclick="minusDrop()">-Drop</button>
+
+    <!-- Text to display user's IP address -->
+    <div class="text-container">
+    <div id="user-ip" class="text">User IP: [IP Address]</div>
+
+</div>
 
 </div>
 
@@ -351,6 +368,21 @@ function hideButtons() {
     document.querySelector('.minus-drop-button').style.display = 'none';
     document.querySelector('.force-drop-button').style.display = 'none';
 }
+
+// Function to get user's IP address
+function getUserIP() {
+    fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('user-ip').textContent = "Your IP Address: " + data.ip;
+    })
+    .catch(error => {
+        console.error('Error fetching IP address:', error);
+    });
+}
+
+// Call the function to get and display the user's IP address
+getUserIP();
 
 // Call the function to check if the user is a Prem user
 checkPremStatus();
