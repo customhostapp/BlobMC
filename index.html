@@ -87,6 +87,11 @@ body {
     align-items: center;
     margin-top: 200px; /* Adjust the margin as needed */
 }
+
+/* Style for the red drop button */
+.red-button {
+    background-color: #CC3116; /* Red */
+}
 </style>
 </head>
 <body>
@@ -121,8 +126,13 @@ body {
 
     <!-- Button to decrement drop count -->
     <button class="button drop-button" onclick="removeDrop()">-Drop</button>
+
+    <!-- Button to decrement drop count -->
+    <button class="button drop-button red-button" onclick="removeDrop()">-Drop</button>
+
 </div>
 <script>
+// Function to increment drop counter and save to cookies
 // Function to increment drop counter and save to cookies
 function drop() {
     var lastDropTime = localStorage.getItem("lastDropTime");
@@ -153,6 +163,9 @@ function drop() {
     } else {
         alert("Egy nap csak egyszer Drop-olhatsz! Próbáld újra 7:40-kor!");
     }
+
+    // Update the drop button appearance after dropping
+    updateDropButtonAppearance(parseInt(document.getElementById("drop-counter").textContent));
 }
 // Function to set initial drop count and check for color/title change
 function setInitialDropCount() {
