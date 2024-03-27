@@ -88,9 +88,10 @@ body {
     margin-top: 200px; /* Adjust the margin as needed */
 }
 
-/* Style for the red drop button */
-.red-button {
-    background-color: #CC3116; /* Red */
+/* Style for the -drop button */
+.minus-drop-button {
+   background-color: #CC3116; /* Red */
+   /* Adjust other styles as needed */
 }
 </style>
 </head>
@@ -123,9 +124,6 @@ body {
 
     <!-- Button to force a drop -->
     <button class="button force-drop-button" onclick="forceDrop()">Prémium Drop</button>
-
-    <!-- Button to decrement drop count -->
-    <button class="button drop-button" onclick="removeDrop()">-Drop</button>
 
     <!-- Button to decrement drop count -->
     <button class="button drop-button red-button" onclick="removeDrop()">-Drop</button>
@@ -239,17 +237,15 @@ function forceDrop() {
     dropButton.textContent = "(=)"; // Change title back to (=)
 }
 
-// Function to decrement drop count and update cookies
-function removeDrop() {
+// Function to decrement drop counter and save to cookies
+function minusDrop() {
     var counterElement = document.getElementById("drop-counter");
     var currentCount = parseInt(counterElement.textContent);
     if (currentCount > 0) {
         currentCount--;
         counterElement.textContent = currentCount;
-        // Save the current count to cookies
+        // Save the current count to localStorage
         localStorage.setItem("drop_count", currentCount);
-        // Update the drop button appearance based on the current count
-        updateDropButtonAppearance(currentCount);
     }
 }
 
