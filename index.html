@@ -197,14 +197,23 @@ function drop() {
 
 // Function to force a drop
 function forceDrop() {
-    var counterElement = document.getElementById("drop-counter");
-    var currentCount = parseInt(counterElement.textContent);
-    currentCount++;
-    counterElement.textContent = currentCount;
-    // Save the current count to cookies
-    localStorage.setItem("drop_count", currentCount);
-    // Update the drop button appearance based on the current count
-    updateDropButtonAppearance(currentCount);
+    var currentTime = new Date();
+    var currentHour = currentTime.getHours();
+    
+    // Check if the current time is after 6:00 AM and before 7:40 AM
+    if (currentHour >= 6 && currentHour < 7) {
+        var counterElement = document.getElementById("drop-counter");
+        var currentCount = parseInt(counterElement.textContent);
+        currentCount++; // Increment drop count by 1
+        counterElement.textContent = currentCount;
+        // Save the current count to localStorage
+        localStorage.setItem("drop_count", currentCount);
+        // Update the drop button appearance based on the current count
+        updateDropButtonAppearance(currentCount);
+    } else {
+        // Display a message if the current time is not within the allowed window
+        alert("You can only use the Force Drop button between 6:00 AM and 7:40 AM.");
+    }
 }
 
 // Function to remove a drop
