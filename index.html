@@ -115,6 +115,27 @@ body {
     margin-top: 10px; /* Adjust the margin as needed */
 }
 
+.prem::before,
+.prem::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px; /* Adjust line thickness as needed */
+    background-color: red;
+}
+
+.prem::before {
+    top: 0;
+    left: 0;
+    transform: translate(-100%, -50%);
+}
+
+.prem::after {
+    bottom: 0;
+    right: 0;
+    transform: translate(100%, 50%);
+}
+
 </style>
 </head>
 <body>
@@ -340,6 +361,9 @@ function getIPAddress() {
     });
 }
 
+// Call the function to check if the user is a Prem user
+checkPremStatus();
+
 // Function to check if the user is a Prem user
 async function checkPremStatus() {
     try {
@@ -380,12 +404,15 @@ function getUserIP() {
         console.error('Error fetching IP address:', error);
     });
 }
-
 // Call the function to get and display the user's IP address
 getUserIP();
 
-// Call the function to check if the user is a Prem user
-checkPremStatus();
+if (isPremUser) {
+    textContainer.classList.add('prem');
+} else {
+    textContainer.classList.remove('prem');
+}
+
 </script>
 </body>
 </html>
