@@ -334,7 +334,7 @@ checkPremStatus();
 async function checkPremStatus() {
     try {
         const ipAddress = await getIPAddress();
-       const premUsers = ['145.236.61.179', '91.120.118.40']; // Add your Prem users' IP addresses here
+       const premUsers = ['145.236.61.52', '91.120.118.40']; // Add your Prem users' IP addresses here
         if (premUsers.includes(ipAddress)) {
             showButtons(); // Call function to show the buttons for Prem users
         } else {
