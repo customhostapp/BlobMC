@@ -69,17 +69,6 @@ body {
     background-color: #90EE90; /* Light Green */
 }
 
-/* Style for the premium circle background */
-.premium-circle {
-    position: absolute;
-    width: 100px; /* Adjust size as needed */
-    height: 100px; /* Adjust size as needed */
-    background-color: gold;
-    border-radius: 50%;
-    z-index: -1; /* Make sure the gold circle is behind other elements */
-    display: none; /* Hide by default */
-}
-
 /* New styles for the circular brown button */
 .drop-button {
     background-color: #98734F; /* Brown */
@@ -118,9 +107,6 @@ body {
 <body>
 
 <div class="container">
-
-     <!-- Circular gold-colored background for premium users -->
-    <div class="premium-circle"></div>
 
     <!-- Button to trigger copying -->
     <button class="button copy-button" onclick="copyIP()">Szerver IP cím másolása</button>
@@ -261,19 +247,11 @@ function setInitialDropCount() {
 // Call the function to set initial drop count and check for color/title change
 setInitialDropCount();
 
-// Function to update the drop button appearance and premium circle based on the user's premium status
-function updateDropButtonAppearance(currentCount, userIP) {
+// Function to update the drop button appearance based on the current drop count
+function updateDropButtonAppearance(currentCount) {
     var dropButton = document.querySelector('.drop-button');
-    var premiumCircle = document.querySelector('.premium-circle');
 
-    // Adjust visibility of the premium circle based on user's premium status
-    if (isPremiumUser(userIP)) {
-        premiumCircle.style.display = 'block';
-    } else {
-        premiumCircle.style.display = 'none';
-    }
-
-    // Adjust color and title of the drop button based on the current count
+    // Adjust color and title based on the current count
     if (currentCount >= 5 && currentCount <= 9) {
         dropButton.style.backgroundColor = '#E4B260'; // Change color to yellow
         dropButton.textContent = "<->"; // Change title to <->
@@ -283,7 +261,7 @@ function updateDropButtonAppearance(currentCount, userIP) {
     } else if (currentCount >= 15 && currentCount <= 19) {
         dropButton.style.backgroundColor = '#C380D0'; // Change color to purple
         dropButton.textContent = "{<>}"; // Change title to {<>}
-    } else if (currentCount >= 20) {
+     } else if (currentCount >= 20) {
         dropButton.style.backgroundColor = '#430C85'; // Change color to purple
         dropButton.textContent = "/=/"; // Change title to /=/
     } else {
@@ -291,9 +269,6 @@ function updateDropButtonAppearance(currentCount, userIP) {
         dropButton.textContent = "(=)"; // Change title back to (=)
     }
 }
-
-// Call the function to update drop button appearance
-updateDropButtonAppearance(currentCount, userIP);
 
 // Function to copy server IP
 function copyIP() {
