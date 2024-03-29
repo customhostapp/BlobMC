@@ -72,12 +72,12 @@ body {
 /* Style for the premium circle background */
 .premium-circle {
     position: absolute;
-    background-color: #C7A02F; /* Gold */
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    background-color: gold;
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    margin-top: 50px; /* Adjust the margin as needed */
-    margin-left: calc(50% - 60px); /* Center horizontally */
+    z-index: -1; /* Make sure the gold circle is behind other elements */
+    display: none; /* Hide by default */
 }
 
 /* New styles for the circular brown button */
@@ -261,7 +261,7 @@ function setInitialDropCount() {
 // Call the function to set initial drop count and check for color/title change
 setInitialDropCount();
 
-// Function to update the drop button appearance based on the current drop count and user's premium status
+// Function to update the drop button appearance and premium circle based on the user's premium status
 function updateDropButtonAppearance(currentCount, userIP) {
     var dropButton = document.querySelector('.drop-button');
     var premiumCircle = document.querySelector('.premium-circle');
